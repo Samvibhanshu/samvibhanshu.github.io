@@ -55,3 +55,18 @@ footer {
     from {transform: translateY(30px); opacity: 0;}
     to {transform: translateY(0); opacity: 1;}
 }
+header h1 {
+    font-size: 2.5em;
+    color: #c79eff;
+    text-shadow: 0 0 10px #9b59b6, 0 0 20px #9b59b6, 0 0 30px #8e44ad;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px #9b59b6, 0 0 20px #9b59b6, 0 0 30px #8e44ad;
+    }
+    to {
+        text-shadow: 0 0 20px #d59aff, 0 0 30px #bb6bd9, 0 0 40px #9b59b6;
+    }
+}
