@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Order service on AWS | Samridhi Vibhanshu</title>
+  <meta name="description" content="The order service rebuilt for AWS: Lambda behind API Gateway, with every rule enforced by DynamoDB's conditional writes and transactions.">
+  <link rel="canonical" href="https://samvibhanshu.github.io/projects/order-service-aws.html">
+  <meta property="og:title" content="Order service on AWS | Samridhi Vibhanshu">
+  <meta property="og:description" content="The order service rebuilt for AWS: Lambda behind API Gateway, with every rule enforced by DynamoDB's conditional writes and transactions.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://samvibhanshu.github.io/projects/order-service-aws.html">
+  <meta property="og:image" content="https://samvibhanshu.github.io/assets/repair-dashboard.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2e1457">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232e1457'/%3E%3Ctext x='16' y='22.5' font-family='Arial,sans-serif' font-size='15' font-weight='700' fill='%23c79eff' text-anchor='middle'%3ESV%3C/text%3E%3C/svg%3E">
+  <script>
+    /* Set the saved theme before the page paints, so there is no flash. Dark is the default. */
+    try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="band">
+    <div class="band-inner">
+      <a class="brand" href="../index.html"><span class="mark" aria-hidden="true">SV</span>Samridhi Vibhanshu</a>
+      <nav aria-label="Main"><a href="../index.html">Home</a><a href="../about.html">About</a><a href="../projects/" aria-current="page">Projects</a><a href="../research.html">Research</a><a href="../experience.html">Experience</a><a href="../resume.html">Resume</a></nav>
+      <button class="theme" type="button" id="theme" aria-label="Switch to light theme">Light</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="page-head">
+      <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../index.html">Home</a></li><li><a href="index.html">Projects</a></li><li aria-current="page">Order service on AWS</li></ol></nav>
+      <h1>Order service on AWS</h1>
+      <p class="lede">The order service rebuilt for AWS: Lambda behind API Gateway, with every rule enforced by DynamoDB's conditional writes and transactions.</p>
+      <ul class="meta" aria-label="Summary"><li>Systems (Java)</li><li>2026</li><li>18 tests</li></ul>
+    </div>
+    <div class="project">
+      <article>
+<section class="panel" id="what" aria-labelledby="what-h"><h2 id="what-h">What it is</h2>
+<p><a href="order-service.html">order-service</a> keeps its guarantees with locks inside one process. Serverless means many short-lived Lambda instances, so the locks have to move into the database. This version keeps the same API and the same guarantees, enforced by DynamoDB instead.</p>
+<p>It has no dependencies, like the original: no AWS SDK. It signs AWS requests itself (Signature Version 4) and talks to DynamoDB&rsquo;s JSON API over HTTPS. The Lambda package is about 45 KB.</p><figure class="diagram"><svg viewBox="0 0 800 102" role="img" aria-label="Request path: client, API Gateway HTTP API, Lambda Java handler, OrderStore building transactions, DynamoDB single table." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="svg-arrow"/></marker></defs><g><rect x="0.0" y="20" width="128" height="58" rx="8" class="svg-box"/><text x="64.0" y="45" text-anchor="middle" class="svg-t">Client</text><text x="64.0" y="64" text-anchor="middle" class="svg-s">HTTPS</text></g><line x1="131.0" y1="49" x2="164.0" y2="49" class="svg-line" marker-end="url(#ah)"/><g><rect x="168.0" y="20" width="128" height="58" rx="8" class="svg-box"/><text x="232.0" y="45" text-anchor="middle" class="svg-t">API Gateway</text><text x="232.0" y="64" text-anchor="middle" class="svg-s">HTTP API</text></g><line x1="299.0" y1="49" x2="332.0" y2="49" class="svg-line" marker-end="url(#ah)"/><g><rect x="336.0" y="20" width="128" height="58" rx="8" class="svg-box"/><text x="400.0" y="45" text-anchor="middle" class="svg-t">Lambda</text><text x="400.0" y="64" text-anchor="middle" class="svg-s">Java handler</text></g><line x1="467.0" y1="49" x2="500.0" y2="49" class="svg-line" marker-end="url(#ah)"/><g><rect x="504.0" y="20" width="128" height="58" rx="8" class="svg-box"/><text x="568.0" y="45" text-anchor="middle" class="svg-t">OrderStore</text><text x="568.0" y="64" text-anchor="middle" class="svg-s">transactions</text></g><line x1="635.0" y1="49" x2="668.0" y2="49" class="svg-line" marker-end="url(#ah)"/><g><rect x="672.0" y="20" width="128" height="58" rx="8" class="svg-box"/><text x="736.0" y="45" text-anchor="middle" class="svg-t">DynamoDB</text><text x="736.0" y="64" text-anchor="middle" class="svg-s">one table</text></g></svg></figure></section>
+<section class="panel" id="guarantees" aria-labelledby="guarantees-h"><h2 id="guarantees-h">How DynamoDB enforces each rule</h2><div class="tbl-wrap" tabindex="0" role="region" aria-label="Guarantees and mechanisms"><table><caption>Guarantees and mechanisms</caption><thead><tr><th scope="col">Guarantee</th><th scope="col">Mechanism</th></tr></thead><tbody><tr><th scope="row">Never sell more than is in stock</th><td>Reserving is a conditional update, <code>available &gt;= :qty</code>, evaluated by DynamoDB, not read-then-write in the function</td></tr><tr><th scope="row">All of an order&rsquo;s stock, or none</th><td>Every SKU update, the order and its first event are one <code>TransactWriteItems</code></td></tr><tr><th scope="row">The price charged is the current price</th><td>Each SKU update also requires <code>price = :p</code>; if the price changed, the request re-reads and retries</td></tr><tr><th scope="row">A retried request does not run twice</th><td>The idempotency key is one more item in the same transaction, written only if it does not exist yet</td></tr><tr><th scope="row">Only legal state changes</th><td>Every change is conditional on the order&rsquo;s <code>version</code> (optimistic concurrency)</td></tr><tr><th scope="row">Every change is recorded</th><td>An event item in the same transaction: an outbox, delivered by the table&rsquo;s stream</td></tr></tbody></table></div><div class="tbl-wrap" tabindex="0" role="region" aria-label="Single-table design"><table><caption>Single-table design</caption><thead><tr><th scope="col">Item</th><th scope="col">Partition key</th><th scope="col">Sort key</th></tr></thead><tbody><tr><th scope="row">Stock</th><td><code>SKU#BOOK-1</code></td><td><code>STOCK</code></td></tr><tr><th scope="row">Order</th><td><code>ORDER#ord_&hellip;</code></td><td><code>ORDER</code></td></tr><tr><th scope="row">Event</th><td><code>ORDER#ord_&hellip;</code></td><td><code>EVENT#000001</code>, &hellip;</td></tr><tr><th scope="row">Idempotency key</th><td><code>IDEM#place#&lt;key&gt;</code></td><td><code>IDEM</code> (TTL 24 h)</td></tr></tbody></table></div><p class="cap">An order and its history share a partition key, so the history is one Query.</p></section>
+<section class="panel" id="decisions" aria-labelledby="decisions-h"><h2 id="decisions-h">Design decisions</h2><ul><li><strong>Retries that cannot double-apply.</strong> Network errors and throttling are retried with exponential backoff and jitter, using the same <code>ClientRequestToken</code>: if the first attempt committed and only its answer was lost, DynamoDB will not apply it again.</li><li><strong>Reading why a transaction was cancelled.</strong> DynamoDB returns a reason per item. The idempotency key is checked first (another request won: replay its answer), then the order&rsquo;s version (someone changed it: re-read), and only then the stock (really out of stock).</li><li><strong>Expired keys count as absent.</strong> DynamoDB&rsquo;s TTL deletes items in the background, sometimes days late, so the condition is <code>attribute_not_exists(PK) OR expiresAt &lt;= :now</code>.</li><li><strong>Least privilege.</strong> The function&rsquo;s role can only read and write this one table.</li><li><strong>No SDK.</strong> The SigV4 signer is tested on vectors produced by botocore, AWS&rsquo;s own implementation, including the worked example in AWS&rsquo;s documentation.</li></ul></section>
+<section class="panel" id="tests" aria-labelledby="tests-h"><h2 id="tests-h">Tests, and what they found</h2>
+<p>18 tests run against moto, an emulator of the DynamoDB API, so they exercise the real wire protocol, the signing, condition expressions and cancellation reasons. I planted 6 bugs (the stock condition dropped, the price condition dropped, no version check, an expired key still blocking, errors not stored under their key, stock failures read before the version check). <strong>All 6 are caught.</strong></p>
+<p>Two bugs the tests found while I wrote it: a ship-and-cancel race was reported as data corruption because the stock failure was read before the version failure, and an HTML 500 page was parsed as JSON instead of being retried.</p>
+<p>One finding about the emulator itself: moto does not isolate concurrent transactions, so under parallel requests it oversold. Real DynamoDB guarantees serializable transactions, so the tests run moto one request at a time; the clients still race exactly as they would against AWS.</p></section>
+<section class="limits" id="limits" aria-labelledby="limits-h"><h2 id="limits-h">What it doesn&rsquo;t do</h2><ul><li>It is tested against an emulator of DynamoDB&rsquo;s API, not deployed AWS: latency, throughput and cost are not measured. <code>deploy.sh</code> and <code>scripts/smoke.sh</code> deploy it and check it end to end.</li><li>The emulator ignores <code>ClientRequestToken</code>, so idempotent retries of a transaction rest on DynamoDB&rsquo;s documented behaviour rather than on a test.</li><li>The admin token for setting stock is an environment variable; beyond a demo it belongs in Secrets Manager.</li></ul></section>
+<nav class="pager" aria-label="More projects"><a class="prev" href="order-service.html"><span>Previous project</span><strong>Order service</strong></a><a class="next" href="mini-sqs.html"><span>Next project</span><strong>Mini-SQS</strong></a></nav>
+      </article>
+      <aside class="glance" aria-label="At a glance">
+        <div class="panel">
+          <h2>At a glance</h2>
+          <dl><div><dt>Result</dt><dd><span class="big">18 tests</span><br>32 requests race for the last 20 units against DynamoDB's API: exactly 20 succeed</dd></div><div><dt>Built with</dt><dd>Java 17, AWS Lambda, API Gateway, DynamoDB, SAM</dd></div><div><dt>Year</dt><dd>2026</dd></div></dl>
+          <a class="btn" href="https://github.com/Samvibhanshu/order-service-aws">Code on GitHub</a>
+        </div>
+        <nav class="panel toc" aria-label="On this page">
+          <h2>On this page</h2>
+          <ol><li><a href="#what">What it is</a></li><li><a href="#guarantees">How DynamoDB enforces each rule</a></li><li><a href="#decisions">Design decisions</a></li><li><a href="#tests">Tests, and what they found</a></li><li><a href="#limits">What it doesn&rsquo;t do</a></li></ol>
+        </nav>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="foot-inner">
+      <div>
+        <h2>Get in touch</h2>
+        <p>I&rsquo;m looking for software engineering internships. Write to <a href="mailto:samridhivibhanshu305@gmail.com">samridhivibhanshu305@gmail.com</a>.</p>
+        <p class="small">&copy; 2026 Samridhi Vibhanshu</p>
+      </div>
+      <ul class="foot-links" aria-label="Elsewhere">
+        <li><a href="https://github.com/Samvibhanshu">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/samridhi-vibhanshu-09771b27a/">LinkedIn</a></li>
+        <li><a href="mailto:samridhivibhanshu305@gmail.com">Email</a></li>
+        <li><a href="../Samridhi_Resume.pdf">Resume (PDF)</a></li>
+      </ul>
+    </div>
+  </footer>
+  <script src="../site.js"></script>
+</body>
+</html>
