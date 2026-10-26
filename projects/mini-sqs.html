@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mini-SQS | Samridhi Vibhanshu</title>
+  <meta name="description" content="A message queue with Amazon SQS semantics: visibility timeouts, dead-letter queues, FIFO groups and long polling.">
+  <link rel="canonical" href="https://samvibhanshu.github.io/projects/mini-sqs.html">
+  <meta property="og:title" content="Mini-SQS | Samridhi Vibhanshu">
+  <meta property="og:description" content="A message queue with Amazon SQS semantics: visibility timeouts, dead-letter queues, FIFO groups and long polling.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://samvibhanshu.github.io/projects/mini-sqs.html">
+  <meta property="og:image" content="https://samvibhanshu.github.io/assets/repair-dashboard.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2e1457">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232e1457'/%3E%3Ctext x='16' y='22.5' font-family='Arial,sans-serif' font-size='15' font-weight='700' fill='%23c79eff' text-anchor='middle'%3ESV%3C/text%3E%3C/svg%3E">
+  <script>
+    /* Set the saved theme before the page paints, so there is no flash. Dark is the default. */
+    try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="band">
+    <div class="band-inner">
+      <a class="brand" href="../index.html"><span class="mark" aria-hidden="true">SV</span>Samridhi Vibhanshu</a>
+      <nav aria-label="Main"><a href="../index.html">Home</a><a href="../about.html">About</a><a href="../projects/" aria-current="page">Projects</a><a href="../research.html">Research</a><a href="../experience.html">Experience</a><a href="../resume.html">Resume</a></nav>
+      <button class="theme" type="button" id="theme" aria-label="Switch to light theme">Light</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="page-head">
+      <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../index.html">Home</a></li><li><a href="index.html">Projects</a></li><li aria-current="page">Mini-SQS</li></ol></nav>
+      <h1>Mini-SQS</h1>
+      <p class="lede">A message queue with Amazon SQS semantics: visibility timeouts, dead-letter queues, FIFO groups and long polling.</p>
+      <ul class="meta" aria-label="Summary"><li>Systems (Java)</li><li>2026</li><li>26 tests</li></ul>
+    </div>
+    <div class="project">
+      <article>
+<section class="panel" id="why" aria-labelledby="why-h"><h2 id="why-h">Why a queue is harder than a list</h2>
+<p>A consumer can crash halfway through a message. If receiving <em>removed</em> the message, it would be lost. So in SQS, receiving only <strong>hides</strong> it for the visibility timeout, and the consumer deletes it when finished. If the consumer dies, the message reappears and another consumer gets it. That gives <strong>at-least-once delivery</strong>: nothing is lost, but a message can be processed twice, so handlers must be idempotent.</p>
+<figure class="diagram"><svg viewBox="0 0 800 264" role="img" aria-label="Life of a message: sent, visible, in flight, deleted. If the visibility timeout runs out it becomes visible again; after too many deliveries it moves to a dead-letter queue." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="svg-arrow"/></marker></defs><g><rect x="0.0" y="20" width="128" height="58" rx="8" class="svg-box"/><text x="64.0" y="54" text-anchor="middle" class="svg-t">Sent</text></g><line x1="131.0" y1="49" x2="220.0" y2="49" class="svg-line" marker-end="url(#ah)"/><g><rect x="224.0" y="20" width="128" height="58" rx="8" class="svg-box"/><text x="288.0" y="45" text-anchor="middle" class="svg-t">Visible</text><text x="288.0" y="64" text-anchor="middle" class="svg-s">waiting</text></g><line x1="355.0" y1="49" x2="444.0" y2="49" class="svg-line" marker-end="url(#ah)"/><g><rect x="448.0" y="20" width="128" height="58" rx="8" class="svg-box"/><text x="512.0" y="45" text-anchor="middle" class="svg-t">In flight</text><text x="512.0" y="64" text-anchor="middle" class="svg-s">hidden from others</text></g><line x1="579.0" y1="49" x2="668.0" y2="49" class="svg-line" marker-end="url(#ah)"/><g><rect x="672.0" y="20" width="128" height="58" rx="8" class="svg-box"/><text x="736.0" y="45" text-anchor="middle" class="svg-t">Deleted</text><text x="736.0" y="64" text-anchor="middle" class="svg-s">consumer finished</text></g><path d="M494.0 80 V118 H294.0 V82" class="svg-line" fill="none" marker-end="url(#ah)"/><text x="394.0" y="136" text-anchor="middle" class="svg-s">visibility timeout runs out</text><g><rect x="629.0" y="190" width="170" height="50" rx="8" class="svg-box svg-alt"/><text x="714.0" y="212" text-anchor="middle" class="svg-t">Dead-letter queue</text><text x="714.0" y="230" text-anchor="middle" class="svg-s">after max receives</text></g><path d="M530.0 80 V172 H714.0 V187" class="svg-line" fill="none" marker-end="url(#ah)"/></svg></figure><p class="cap">Everything else follows from that one decision.</p></section>
+<section class="panel" id="problems" aria-labelledby="problems-h"><h2 id="problems-h">Problems and what the queue does about each</h2><div class="tbl-wrap" tabindex="0" role="region" aria-label="Queue problems and mechanisms"><table><caption>Queue problems and mechanisms</caption><thead><tr><th scope="col">Problem</th><th scope="col">What this queue does</th></tr></thead><tbody><tr><th scope="row">A slow consumer&rsquo;s message reappears while it is still working</th><td><code>changeVisibility(handle, ms)</code> extends the timeout; <code>0</code> gives the message back at once</td></tr><tr><th scope="row">An old, slow consumer deletes a message that was since re-delivered</th><td>Each delivery gets a new <strong>receipt handle</strong>; only the latest one can delete, and stale handles return <code>false</code></td></tr><tr><th scope="row">A &ldquo;poison&rdquo; message fails forever</th><td>After <code>maxReceiveCount</code> deliveries it moves to a <strong>dead-letter queue</strong>; <code>redriveTo</code> moves it back after the fix</td></tr><tr><th scope="row">A failing downstream gets hammered by instant retries</th><td>The worker delays each retry by base &times; 2<sup>n&minus;1</sup>, capped (exponential backoff)</td></tr><tr><th scope="row">Consumers poll an empty queue in a tight loop</th><td><strong>Long polling</strong>: <code>receive(max, waitMs)</code> sleeps until a message arrives or the wait ends; a send wakes it at once</td></tr><tr><th scope="row">Order matters (all events of one order, in sequence)</th><td><strong>FIFO queues</strong>: per message group, strict send order and one message in flight at a time; groups run in parallel</td></tr><tr><th scope="row">A producer retries a send after a timeout</th><td>FIFO <strong>deduplication</strong>: a repeated dedup id (or the same body, for content-based dedup) within 5 minutes is accepted but not stored again</td></tr><tr><th scope="row">Messages pile up forever</th><td><strong>Retention</strong>: messages expire a set time after they were <em>first</em> sent, even if they moved to the DLQ</td></tr></tbody></table></div></section>
+<section class="panel" id="built" aria-labelledby="built-h"><h2 id="built-h">How it is built</h2><ul><li><strong>One lock per queue</strong>, and a <code>Condition</code> that long-polling receivers wait on. <code>send</code> and <code>changeVisibility</code> signal it.</li><li><strong>Standard queue:</strong> a <code>TreeSet</code> ordered by &ldquo;visible at&rdquo; (ties broken by send order), so a receive takes the earliest visible message in O(log n). A message&rsquo;s position depends on its visible-at time, so it is removed before that changes and re-inserted after. Forgetting that silently corrupts a sorted set; one of the planted bugs checks for it.</li><li><strong>FIFO queue:</strong> one deque per group, in send order. Only the head of a group can be delivered, and an in-flight head blocks the rest of its group.</li><li><strong>Two queues&rsquo; locks are never held together.</strong> Moving a message to the DLQ happens after the source queue&rsquo;s lock is released, so there is no lock-order deadlock between a queue and its DLQ.</li><li><strong>Time is injected</strong> (<code>Clock</code>). Tests use a manual clock, so &ldquo;wait 30 seconds&rdquo; takes no real time and every run is repeatable.</li></ul></section>
+<section class="panel" id="usage" aria-labelledby="usage-h"><h2 id="usage-h">Using it</h2><pre class="code" tabindex="0" aria-label="Usage example"><code>MessageQueue dlq = new MessageQueue("orders-dlq", QueueConfig.standard(30_000), Clock.SYSTEM);
+MessageQueue q = new MessageQueue("orders", QueueConfig.standard(30_000).withDeadLetterQueue(dlq, 5), Clock.SYSTEM);
+
+q.send("{\"orderId\":42}");
+for (ReceivedMessage m : q.receive(10, 20_000)) {   // long poll up to 20 s
+    process(m.body());
+    q.delete(m.receiptHandle());                    // only after success
+}</code></pre></section>
+<section class="panel" id="tests" aria-labelledby="tests-h"><h2 id="tests-h">Tests</h2><div class="tbl-wrap" tabindex="0" role="region" aria-label="Test classes"><table><caption>Test classes</caption><thead><tr><th scope="col">Test class</th><th scope="col">What it shows</th></tr></thead><tbody><tr><th scope="row"><code>StandardQueueTests</code></th><td>Visibility timeout, stale receipt handles, delays, batch limits, retention, input validation</td></tr><tr><th scope="row"><code>FifoQueueTests</code></th><td>Strict order per group, groups in parallel, dedup window, content-based dedup, round-robin between groups</td></tr><tr><th scope="row"><code>DeadLetterTests</code></th><td>Poison messages reach the DLQ without blocking healthy ones; redrive; retention measured from the first send</td></tr><tr><th scope="row"><code>WorkerTests</code></th><td>Successes deleted, transient failures retried with backoff, permanent failures dead-lettered</td></tr><tr><th scope="row"><code>RandomizedInvariantTests</code></th><td>600 random sequences of send, receive, delete, change visibility and time passing (standard and FIFO), checking after every step that no message is lost, duplicated or invented, that nothing is delivered while in flight, and that FIFO order holds</td></tr><tr><th scope="row"><code>ConcurrencyTests</code></th><td>8 producers &times; 2,500 messages and 8 consumers on real threads: every message deleted exactly once. 20 FIFO groups &times; 200 messages with 8 competing consumers: each group processed strictly in order</td></tr></tbody></table></div>
+<p><strong>Do the tests catch real bugs?</strong> I planted 11 bugs one at a time, among them: old receipt handles still working, an off-by-one in the dead-letter count, changing a message&rsquo;s visible-at time while it sits in the sorted set, retention restarting when a message moves to the DLQ, deduplication never expiring, backoff that does not grow, a send that does not wake long-polling receivers, and no round-robin between FIFO groups. <strong>All 11 were caught.</strong></p></section>
+<section class="limits" id="limits" aria-labelledby="limits-h"><h2 id="limits-h">What it doesn&rsquo;t do</h2><ul><li>It is in memory and single process. Real SQS replicates every message across several servers and availability zones before acknowledging a send.</li><li>A FIFO receive returns at most one message per group; SQS can return several messages of one group in a batch.</li><li>&ldquo;Approximate&rdquo; counts are exact here, because there is one copy of the data.</li></ul></section>
+<nav class="pager" aria-label="More projects"><a class="prev" href="order-service.html"><span>Previous project</span><strong>Order service</strong></a><a class="next" href="agentic-bug-repair.html"><span>Next project</span><strong>Agentic bug repair</strong></a></nav>
+      </article>
+      <aside class="glance" aria-label="At a glance">
+        <div class="panel">
+          <h2>At a glance</h2>
+          <dl><div><dt>Result</dt><dd><span class="big">26 tests</span><br>600 random operation sequences: no message is lost, duplicated or delivered out of order</dd></div><div><dt>Built with</dt><dd>Java 17, no dependencies</dd></div><div><dt>Year</dt><dd>2026</dd></div></dl>
+          <a class="btn" href="https://github.com/Samvibhanshu/mini-sqs">Code on GitHub</a>
+        </div>
+        <nav class="panel toc" aria-label="On this page">
+          <h2>On this page</h2>
+          <ol><li><a href="#why">Why a queue is harder than a list</a></li><li><a href="#problems">Problems and what the queue does about each</a></li><li><a href="#built">How it is built</a></li><li><a href="#usage">Using it</a></li><li><a href="#tests">Tests</a></li><li><a href="#limits">What it doesn&rsquo;t do</a></li></ol>
+        </nav>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="foot-inner">
+      <div>
+        <h2>Get in touch</h2>
+        <p>I&rsquo;m looking for software engineering internships. Write to <a href="mailto:samridhivibhanshu305@gmail.com">samridhivibhanshu305@gmail.com</a>.</p>
+        <p class="small">&copy; 2026 Samridhi Vibhanshu</p>
+      </div>
+      <ul class="foot-links" aria-label="Elsewhere">
+        <li><a href="https://github.com/Samvibhanshu">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/samridhi-vibhanshu-09771b27a/">LinkedIn</a></li>
+        <li><a href="mailto:samridhivibhanshu305@gmail.com">Email</a></li>
+        <li><a href="../Samridhi_Resume.pdf">Resume (PDF)</a></li>
+      </ul>
+    </div>
+  </footer>
+  <script src="../site.js"></script>
+</body>
+</html>

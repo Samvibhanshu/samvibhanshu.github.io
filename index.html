@@ -1,221 +1,146 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Samridhi Vibhanshu</title>
-  <meta name="description" content="Samridhi Vibhanshu: computer science student at VIT Vellore. Backend systems in Java, web apps in React, and research prototypes behind six patent applications.">
+  <meta name="description" content="Samridhi Vibhanshu: computer science student at VIT Vellore (CGPA 9.81). Backend systems in Java, web apps in React, and tested research prototypes behind six patent applications and three IEEE Access submissions.">
+  <link rel="canonical" href="https://samvibhanshu.github.io/">
   <meta property="og:title" content="Samridhi Vibhanshu">
-  <meta property="og:description" content="Backend systems in Java, web apps in React, and tested research prototypes.">
+  <meta property="og:description" content="Samridhi Vibhanshu: computer science student at VIT Vellore (CGPA 9.81). Backend systems in Java, web apps in React, and tested research prototypes behind six patent applications and three IEEE Access submissions.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://samvibhanshu.github.io/">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%235b34c9'/%3E%3Ctext x='16' y='22.5' font-family='Arial,sans-serif' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3ESV%3C/text%3E%3C/svg%3E">
+  <meta property="og:image" content="https://samvibhanshu.github.io/assets/repair-dashboard.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2e1457">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232e1457'/%3E%3Ctext x='16' y='22.5' font-family='Arial,sans-serif' font-size='15' font-weight='700' fill='%23c79eff' text-anchor='middle'%3ESV%3C/text%3E%3C/svg%3E">
+  <script>
+    /* Set the saved theme before the page paints, so there is no flash. Dark is the default. */
+    try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Samridhi Vibhanshu", "url": "https://samvibhanshu.github.io/", "email": "mailto:samridhivibhanshu305@gmail.com", "sameAs": ["https://github.com/Samvibhanshu", "https://www.linkedin.com/in/samridhi-vibhanshu-09771b27a/"], "alumniOf": {"@type": "CollegeOrUniversity", "name": "Vellore Institute of Technology"}, "knowsAbout": ["Java", "Concurrency", "Distributed systems", "Python", "Machine learning", "React"]}</script>
 </head>
 <body>
-  <a class="skip" href="#work">Skip to projects</a>
-
-  <header class="top">
-    <nav aria-label="Sections">
-      <a href="#work">Projects</a>
-      <a href="#research">Research</a>
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
-    </nav>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="band">
+    <div class="band-inner">
+      <a class="brand" href="index.html"><span class="mark" aria-hidden="true">SV</span>Samridhi Vibhanshu</a>
+      <nav aria-label="Main"><a href="index.html" aria-current="page">Home</a><a href="about.html">About</a><a href="projects/">Projects</a><a href="research.html">Research</a><a href="experience.html">Experience</a><a href="resume.html">Resume</a></nav>
+      <button class="theme" type="button" id="theme" aria-label="Switch to light theme">Light</button>
+    </div>
   </header>
 
-  <main>
+  <main id="main">
     <section class="hero" aria-labelledby="name">
-      <h1 id="name">Samridhi<br>Vibhanshu</h1>
-      <p class="lede">
-        Computer science (business systems) at VIT Vellore, graduating 2027. I build backend systems in Java and the
-        web apps on top of them, and I turn research ideas into working, tested prototypes: six patent applications
-        and three papers under review.
-      </p>
-      <p class="links">
-        <a href="https://github.com/Samvibhanshu">GitHub</a>
-        <a href="https://www.linkedin.com/in/samridhi-vibhanshu-09771b27a/">LinkedIn</a>
-        <a href="mailto:samridhivibhanshu305@gmail.com">Email</a>
-        <a href="Samridhi_Resume.pdf">Resume (PDF)</a>
-      </p>
+      <div>
+        <h1 id="name">Samridhi<br>Vibhanshu</h1>
+        <p class="lede">Computer science student at VIT Vellore, graduating in 2027. I build backend systems in Java and the web apps on top of them, and I turn research ideas into working, tested prototypes.</p>
+        <p class="status"><span class="dot" aria-hidden="true"></span>Looking for software engineering internships</p>
+        <p class="actions">
+          <a class="btn" href="projects/">See my projects</a>
+          <a class="btn ghost" href="Samridhi_Resume.pdf">Resume (PDF)</a>
+          <a href="https://github.com/Samvibhanshu">GitHub</a>
+          <a href="https://www.linkedin.com/in/samridhi-vibhanshu-09771b27a/">LinkedIn</a>
+        </p>
+      </div>
+      <figure class="hero-shot">
+        <a href="projects/agentic-bug-repair.html">
+          <img src="assets/repair-dashboard.png" width="1100" height="954" alt="Dashboard of agentic-bug-repair showing a resolved run: the agent's state machine, a timeline of each step, and what failed.">
+        </a>
+        <figcaption>A real run of <a href="projects/agentic-bug-repair.html">agentic bug repair</a>: it found a bug, tried patches in a sandbox and published a fix that passes every test.</figcaption>
+      </figure>
     </section>
 
-    <section id="work" aria-labelledby="work-h">
-      <h2 id="work-h">Projects</h2>
-      <p class="note">Every project links to its code. Next to each one is what backs it up: the test suite, and a result you can reproduce from the repository.</p>
+    <dl class="facts">
+      <div><dt>CGPA at VIT Vellore</dt><dd>9.81</dd></div>
+      <div><dt>patent applications, 5 published</dt><dd>6</dd></div>
+      <div><dt>papers submitted to IEEE Access</dt><dd>3</dd></div>
+      <div><dt>automated tests across 8 projects</dt><dd>400+</dd></div>
+    </dl>
 
-      <h3>Systems in Java</h3>
+    <section class="panel" aria-labelledby="sel-h">
+      <div class="head">
+        <h2 id="sel-h">Selected work</h2>
+        <a class="more" href="projects/">All 11 projects</a>
+      </div>
+      <p class="note">Backend systems in plain Java: no frameworks, so every line is visible. Next to each is what backs it up.</p>
       <ul class="ledger">
-        <li>
-          <div class="what">
-            <a class="name" href="https://github.com/Samvibhanshu/agentic-bug-repair">agentic-bug-repair</a>
-            <p>Takes a Java repository with failing tests and tries to fix it: indexes the code as a call graph, ranks where the bug probably is, tries small patches in an isolated sandbox, and only proposes a pull request whose diff passes every test on a clean checkout. Live dashboard and GitHub webhook.</p>
-            <p class="stack">Java 17, JDK compiler API, no dependencies</p>
-          </div>
-          <p class="proof"><strong>148 tests</strong> Repairs 4 of 20 seeded bugs with no model; the README explains why the rest fail</p>
-        </li>
-        <li>
-          <div class="what">
-            <a class="name" href="https://github.com/Samvibhanshu/order-service">order-service</a>
-            <p>E-commerce order backend: place, pay, ship and cancel over a JSON HTTP API. It never oversells under concurrency, never charges twice when a payment is retried, and only allows legal state changes.</p>
-            <p class="stack">Java 17, java.util.concurrent, JDK HTTP server</p>
-          </div>
-          <p class="proof"><strong>30 tests</strong> 64 threads race for the last 50 units: exactly 50 orders succeed, every time</p>
-        </li>
-        <li>
-          <div class="what">
-            <a class="name" href="https://github.com/Samvibhanshu/mini-sqs">mini-sqs</a>
-            <p>A message queue with Amazon SQS semantics: visibility timeouts, receipt handles, dead-letter queues and redrive, FIFO groups with deduplication, long polling, and a worker pool with exponential backoff.</p>
-            <p class="stack">Java 17, no dependencies</p>
-          </div>
-          <p class="proof"><strong>26 tests</strong> 600 random operation sequences; no message is ever lost, duplicated or delivered out of FIFO order</p>
-        </li>
-        <li>
-          <div class="what">
-            <a class="name" href="https://github.com/Samvibhanshu/route-planner">route-planner</a>
-            <p>Delivery routing on a city road network: BFS, Dijkstra, A* and bidirectional Dijkstra, then a van's round through many stops with Held–Karp (exact) and nearest neighbour plus 2-opt.</p>
-            <p class="stack">Java 17, no dependencies</p>
-          </div>
-          <p class="proof"><strong>19 tests</strong> Checked against Floyd–Warshall and brute force; A* settles 2.2× fewer nodes than Dijkstra</p>
-        </li>
-      </ul>
-
-      <h3>Research prototypes</h3>
-      <ul class="ledger">
-        <li>
-          <div class="what">
-            <a class="name" href="https://github.com/Samvibhanshu/opinion-lineage">Opinion lineage</a>
-            <p>Measures what people actually think on social media by tracking which posts copy, paraphrase or AI-rewrite which. When a source turns out to be fake, only its descendants are re-weighted, with no model re-runs. A question-answering layer on top cites independent posts.</p>
-            <p class="stack">Python, NumPy, scikit-learn, networkx</p>
-          </div>
-          <p class="proof"><strong>27 tests</strong> With 40% coordinated content, error 0.007 vs 0.038 for a raw count (simulated stream)</p>
-        </li>
-        <li>
-          <div class="what">
-            <a class="name" href="https://github.com/Samvibhanshu/Trust-Decay-Prediction">Trust decay prediction</a>
-            <p>Predicts which IT assets are losing trust from audit events in a temporal knowledge graph, and ranks them for audit with explanations. Dashboard and JSON API.</p>
-            <p class="stack">Python, scikit-learn, networkx, Flask</p>
-          </div>
-          <p class="proof"><strong>68 tests</strong> Auditing the top 10% finds high or critical decay 47% of the time, vs 31% at random (simulated)</p>
-        </li>
-        <li>
-          <div class="what">
-            <a class="name" href="https://github.com/Samvibhanshu/Autonomous-Wildfire-Prediction-Response-System">Wildfire risk prediction</a>
-            <p>Wildfire-risk ensemble on the UCI Forest Fires data, with resource orchestration and a live dashboard. The models are constrained so hotter, drier weather can never lower the predicted risk.</p>
-            <p class="stack">Python, scikit-learn, Flask, SQLite</p>
-          </div>
-          <p class="proof"><strong>71 tests</strong> Measured accuracy reported next to the projected figures</p>
-        </li>
-      </ul>
-
-      <h3>Web apps</h3>
-      <ul class="ledger">
-        <li>
-          <div class="what">
-            <a class="name" href="https://github.com/Samvibhanshu/Notes-App">Notes App</a>
-            <p>Create, edit, search, copy and delete notes, saved in the browser. Pure Redux reducers, and corrupted storage cannot crash it. Deployed on Vercel.</p>
-            <p class="stack">React 19, TypeScript, Redux Toolkit, Vite, Tailwind</p>
-          </div>
-          <p class="proof"><strong>13 tests</strong> CI runs lint, tests and build on every push</p>
-        </li>
-        <li>
-          <div class="what">
-            <a class="name" href="https://github.com/Samvibhanshu/Found-It">Found-It</a>
-            <p>Campus lost-and-found front end: report found items, browse lost ones, upload photos with drag and drop. Team project; I wrote most of the commits.</p>
-            <p class="stack">Next.js, React, Tailwind CSS</p>
-          </div>
-          <p class="proof"><strong>Prototype</strong> Front end only so far: sample data and a demo sign-in</p>
-        </li>
+<li data-cat="java" data-text="order service place, pay, ship and cancel orders over a json http api. it never oversells under concurrency, never charges twice when a payment is retried, and only allows legal state changes. java 17, java.util.concurrent, jdk http server systems (java)">
+  <div class="what">
+    <a class="name" href="projects/order-service.html">Order service</a>
+    <p>Place, pay, ship and cancel orders over a JSON HTTP API. It never oversells under concurrency, never charges twice when a payment is retried, and only allows legal state changes.</p>
+    <p class="stack">Java 17, java.util.concurrent, JDK HTTP server</p>
+    <p class="row-links"><a href="projects/order-service.html">How it works and what it doesn&rsquo;t do</a><a href="https://github.com/Samvibhanshu/order-service">Code on GitHub</a></p>
+  </div>
+  <p class="proof"><strong>30 tests</strong>64 threads race for the last 50 units: exactly 50 orders succeed, every time</p>
+</li><li data-cat="java" data-text="mini-sqs a message queue with amazon sqs semantics: visibility timeouts, receipt handles, dead-letter queues and redrive, fifo groups with deduplication, long polling, and a worker pool with exponential backoff. java 17, no dependencies systems (java)">
+  <div class="what">
+    <a class="name" href="projects/mini-sqs.html">Mini-SQS</a>
+    <p>A message queue with Amazon SQS semantics: visibility timeouts, receipt handles, dead-letter queues and redrive, FIFO groups with deduplication, long polling, and a worker pool with exponential backoff.</p>
+    <p class="stack">Java 17, no dependencies</p>
+    <p class="row-links"><a href="projects/mini-sqs.html">How it works and what it doesn&rsquo;t do</a><a href="https://github.com/Samvibhanshu/mini-sqs">Code on GitHub</a></p>
+  </div>
+  <p class="proof"><strong>26 tests</strong>600 random operation sequences: no message is lost, duplicated or delivered out of order</p>
+</li><li data-cat="java" data-text="agentic bug repair takes a java repository with failing tests and tries to fix it: indexes the code as a call graph, ranks where the bug probably is, tries small patches in an isolated sandbox, and only proposes a pull request whose diff passes every test on a clean checkout. java 17, jdk compiler api, linux namespaces, javascript systems (java)">
+  <div class="what">
+    <a class="name" href="projects/agentic-bug-repair.html">Agentic bug repair</a>
+    <p>Takes a Java repository with failing tests and tries to fix it: indexes the code as a call graph, ranks where the bug probably is, tries small patches in an isolated sandbox, and only proposes a pull request whose diff passes every test on a clean checkout.</p>
+    <p class="stack">Java 17, JDK compiler API, Linux namespaces, JavaScript</p>
+    <p class="row-links"><a href="projects/agentic-bug-repair.html">How it works and what it doesn&rsquo;t do</a><a href="https://github.com/Samvibhanshu/agentic-bug-repair">Code on GitHub</a></p>
+  </div>
+  <p class="proof"><strong>148 tests</strong>A fixed bug is re-verified on a clean checkout before anything is published</p>
+</li>
       </ul>
     </section>
 
-    <section id="research" aria-labelledby="research-h">
-      <h2 id="research-h">Research</h2>
-      <div class="cols">
+    <section class="panel" aria-labelledby="how-h">
+      <h2 id="how-h">How I work</h2>
+      <div class="principles">
         <div>
-          <h3>Patent applications</h3>
-          <p class="note">Filed through the VIT IPR Cell, each taken from idea to a working prototype.</p>
-          <ul class="plain">
-            <li>Autonomous wildfire risk prediction with resource-orchestrated response <span class="status">published</span></li>
-            <li>Information-system trust-decay prediction on temporal knowledge graphs <span class="status">published</span></li>
-            <li>Hybrid edge-AI mine tremor detection with distributed IoT sensor nodes <span class="status">published</span></li>
-            <li>Provenance-aware organic sentiment estimation <span class="status">published</span></li>
-            <li>Risk-constrained emergency control using reversible micro-interventions <span class="status">published</span></li>
-            <li>Predictive railway collision avoidance <span class="status">filed</span></li>
-          </ul>
+          <h3>Prove the hard part</h3>
+          <p>In <a href="projects/order-service.html">order service</a>, 64 threads race for the last 50 units on every test run, and exactly 50 orders succeed.</p>
         </div>
         <div>
-          <h3>Papers</h3>
-          <p class="note">Submitted to IEEE Access, 2026.</p>
-          <ul class="plain">
-            <li>Physics-Shielded Conformal Learning for Network-Aware Railway Collision-Risk Assessment Under Degraded Observations</li>
-            <li>Forecasting Information-System Trust Decay on Temporal Knowledge Graphs With Delayed-Feedback Conformal Audit Selection</li>
-            <li>Confidence-Weighted Opinion Lineage for Organic Sentiment Estimation Under Synthetic and Coordinated Amplification</li>
-          </ul>
+          <h3>Test the tests</h3>
+          <p>I plant bugs to see whether my tests notice. In <a href="projects/mini-sqs.html">Mini-SQS</a> they caught all 11; in <a href="projects/route-planner.html">route planner</a> 9 of 11, and the other two cannot change behaviour.</p>
+        </div>
+        <div>
+          <h3>Write the limits down</h3>
+          <p>Every project page ends with what it doesn&rsquo;t do. <a href="projects/agentic-bug-repair.html">Agentic bug repair</a> fixed 4 of 20 seeded bugs, and its page says why.</p>
         </div>
       </div>
     </section>
 
-    <section id="experience" aria-labelledby="experience-h">
-      <h2 id="experience-h">Experience</h2>
-      <ol class="timeline">
-        <li>
-          <p class="when">Aug 2024 – present</p>
-          <div>
-            <h3>Full stack developer, CSI-VIT</h3>
-            <p>React and Tailwind work on the Laser Tag event site (1,000+ visitors), and GitHub data visualisation for the team.</p>
-          </div>
-        </li>
-        <li>
-          <p class="when">Jul 2024 – present</p>
-          <div>
-            <h3>Programme representative, VIT</h3>
-            <p>Point of contact for 200+ students on academic concerns, and curriculum feedback to the department.</p>
-          </div>
-        </li>
-        <li>
-          <p class="when">Apr 2024 – present</p>
-          <div>
-            <h3>Core committee member, CSI-VIT</h3>
-            <p>Event logistics for 1,000+ participants.</p>
-          </div>
-        </li>
-        <li>
-          <p class="when">2023 – 2027</p>
-          <div>
-            <h3>B.Tech, Computer Science and Business Systems, VIT Vellore</h3>
-            <p>Data structures and algorithms, operating systems, computer networks, database systems, software engineering.</p>
-          </div>
-        </li>
-      </ol>
-    </section>
-
-    <section id="skills" aria-labelledby="skills-h">
-      <h2 id="skills-h">Skills</h2>
-      <dl class="skills">
-        <dt>Languages</dt><dd>Java, Python, TypeScript, JavaScript, C/C++, SQL, R</dd>
-        <dt>Backend</dt><dd>Concurrency, REST/JSON APIs, Node.js, Express, Flask</dd>
-        <dt>Front end</dt><dd>React, Next.js, Redux Toolkit, Tailwind CSS, Vite</dd>
-        <dt>ML and data</dt><dd>scikit-learn, pandas, NumPy, networkx, LangChain, RAG</dd>
-        <dt>Tools</dt><dd>Git, GitHub Actions, Vitest, pytest, Oracle Cloud Infrastructure</dd>
-        <dt>Certified</dt><dd>Oracle Cloud Infrastructure 2025 Generative AI Professional</dd>
-      </dl>
-    </section>
-
-    <section id="contact" aria-labelledby="contact-h">
-      <h2 id="contact-h">Contact</h2>
-      <p class="contact-line">I'm looking for software engineering internships. Write to
-        <a href="mailto:samridhivibhanshu305@gmail.com">samridhivibhanshu305@gmail.com</a> or find me on
-        <a href="https://www.linkedin.com/in/samridhi-vibhanshu-09771b27a/">LinkedIn</a>.</p>
+    <section class="panel" aria-labelledby="more-h">
+      <h2 id="more-h">More about me</h2>
+      <ul class="doors">
+        <li><a href="projects/"><strong>Projects</strong><span>11 projects: Java systems, ML research prototypes, web apps and an IoT wearable.</span></a></li>
+        <li><a href="research.html"><strong>Research</strong><span>Six patent applications (five published) and three papers under review.</span></a></li>
+        <li><a href="experience.html"><strong>Experience</strong><span>Board member and full stack developer at CSI-VIT; programme representative.</span></a></li>
+        <li><a href="about.html"><strong>About and skills</strong><span>Education (CGPA 9.81), coursework, languages, tools and certifications.</span></a></li>
+      </ul>
     </section>
   </main>
 
   <footer>
-    <p>© 2026 Samridhi Vibhanshu</p>
+    <div class="foot-inner">
+      <div>
+        <h2>Get in touch</h2>
+        <p>I&rsquo;m looking for software engineering internships. Write to <a href="mailto:samridhivibhanshu305@gmail.com">samridhivibhanshu305@gmail.com</a>.</p>
+        <p class="small">&copy; 2026 Samridhi Vibhanshu</p>
+      </div>
+      <ul class="foot-links" aria-label="Elsewhere">
+        <li><a href="https://github.com/Samvibhanshu">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/samridhi-vibhanshu-09771b27a/">LinkedIn</a></li>
+        <li><a href="mailto:samridhivibhanshu305@gmail.com">Email</a></li>
+        <li><a href="Samridhi_Resume.pdf">Resume (PDF)</a></li>
+      </ul>
+    </div>
   </footer>
+  <script src="site.js"></script>
 </body>
 </html>

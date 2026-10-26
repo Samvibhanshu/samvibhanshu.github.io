@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agentic bug repair | Samridhi Vibhanshu</title>
+  <meta name="description" content="An agent that takes a Java repository with failing tests and tries to produce a verified fix as a pull request.">
+  <link rel="canonical" href="https://samvibhanshu.github.io/projects/agentic-bug-repair.html">
+  <meta property="og:title" content="Agentic bug repair | Samridhi Vibhanshu">
+  <meta property="og:description" content="An agent that takes a Java repository with failing tests and tries to produce a verified fix as a pull request.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://samvibhanshu.github.io/projects/agentic-bug-repair.html">
+  <meta property="og:image" content="https://samvibhanshu.github.io/assets/repair-dashboard.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2e1457">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232e1457'/%3E%3Ctext x='16' y='22.5' font-family='Arial,sans-serif' font-size='15' font-weight='700' fill='%23c79eff' text-anchor='middle'%3ESV%3C/text%3E%3C/svg%3E">
+  <script>
+    /* Set the saved theme before the page paints, so there is no flash. Dark is the default. */
+    try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="band">
+    <div class="band-inner">
+      <a class="brand" href="../index.html"><span class="mark" aria-hidden="true">SV</span>Samridhi Vibhanshu</a>
+      <nav aria-label="Main"><a href="../index.html">Home</a><a href="../about.html">About</a><a href="../projects/" aria-current="page">Projects</a><a href="../research.html">Research</a><a href="../experience.html">Experience</a><a href="../resume.html">Resume</a></nav>
+      <button class="theme" type="button" id="theme" aria-label="Switch to light theme">Light</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="page-head">
+      <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../index.html">Home</a></li><li><a href="index.html">Projects</a></li><li aria-current="page">Agentic bug repair</li></ol></nav>
+      <h1>Agentic bug repair</h1>
+      <p class="lede">An agent that takes a Java repository with failing tests and tries to produce a verified fix as a pull request.</p>
+      <ul class="meta" aria-label="Summary"><li>Systems (Java)</li><li>2026</li><li>148 tests</li></ul>
+    </div>
+    <div class="project">
+      <article>
+<section class="panel" id="what" aria-labelledby="what-h"><h2 id="what-h">What it does</h2>
+<p>The agent takes a Java repository with failing tests, indexes the code into a graph, localizes the bug, proposes a small unified diff, runs every candidate in an isolated sandbox, feeds the failures back, and only publishes a diff that passes all tests on a clean checkout. It runs from the command line, or as a service that reacts to failed GitHub builds and shows its work on a dashboard.</p>
+<p>It has <strong>no dependencies</strong>: the JDK compiler API is the parser and <code>com.sun.net.httpserver</code> is the server. It is about 5,700 lines of Java, 470 of browser code and 148 tests, small enough to read in one sitting.</p>
+<p>A real run on a seeded bug (<code>addRoad</code> rejected a cost of 0 because it checked <code>&lt;=</code> where <code>&lt;</code> was needed):</p><pre class="code" tabindex="0" aria-label="A real run, abridged"><code>INGEST     --READY--&gt;            LOCALIZE   (3575 ms)  2 failing, 17 passing; graph has 131 nodes and 335 edges
+LOCALIZE   --SUSPECTS_FOUND--&gt;   SYNTHESIZE (56 ms)    top suspect Graph#addRoad (score 0.84)
+SYNTHESIZE --CANDIDATES_READY--&gt; VERIFY     (53 ms)    round 1: 8 candidate(s) from mutation
+VERIFY     --ALL_TESTS_PASS--&gt;   PUBLISH    (3507 ms)  round 1: 'replace `&lt;=` with `&lt;` (line 69)' passes every test
+PUBLISH    --PUBLISHED--&gt;        RESOLVED   (2433 ms)  diff re-verified on a clean checkout; pull request prepared
+
+-        if (cost &lt;= 0) throw new IllegalArgumentException("negative cost ...");
++        if (cost &lt; 0) throw new IllegalArgumentException("negative cost ...");</code></pre><figure class="inline-fig"><img src="../assets/repair-dashboard.png" width="1100" height="954" loading="lazy" alt="Dashboard of agentic-bug-repair showing a resolved run: the agent's state machine, a timeline of each step, and what failed."><figcaption>The dashboard for a resolved run. Everything on it comes from the JSON the server produces; it is a real run, not a mock-up.</figcaption></figure></section>
+<section class="panel" id="how" aria-labelledby="how-h"><h2 id="how-h">How it works</h2><figure class="diagram"><svg viewBox="0 0 800 168" role="img" aria-label="Pipeline: ingest, localize, synthesize, verify, publish, with critic feedback from verify back to synthesize for up to three rounds." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="svg-arrow"/></marker></defs><g><rect x="0.0" y="20" width="128" height="58" rx="8" class="svg-box"/><text x="64.0" y="45" text-anchor="middle" class="svg-t">Ingest</text><text x="64.0" y="64" text-anchor="middle" class="svg-s">graph + baseline</text></g><line x1="131.0" y1="49" x2="164.0" y2="49" class="svg-line" marker-end="url(#ah)"/><g><rect x="168.0" y="20" width="128" height="58" rx="8" class="svg-box"/><text x="232.0" y="45" text-anchor="middle" class="svg-t">Localize</text><text x="232.0" y="64" text-anchor="middle" class="svg-s">rank suspects</text></g><line x1="299.0" y1="49" x2="332.0" y2="49" class="svg-line" marker-end="url(#ah)"/><g><rect x="336.0" y="20" width="128" height="58" rx="8" class="svg-box"/><text x="400.0" y="45" text-anchor="middle" class="svg-t">Synthesize</text><text x="400.0" y="64" text-anchor="middle" class="svg-s">candidate diffs</text></g><line x1="467.0" y1="49" x2="500.0" y2="49" class="svg-line" marker-end="url(#ah)"/><g><rect x="504.0" y="20" width="128" height="58" rx="8" class="svg-box"/><text x="568.0" y="45" text-anchor="middle" class="svg-t">Verify</text><text x="568.0" y="64" text-anchor="middle" class="svg-s">sandbox per diff</text></g><line x1="635.0" y1="49" x2="668.0" y2="49" class="svg-line" marker-end="url(#ah)"/><g><rect x="672.0" y="20" width="128" height="58" rx="8" class="svg-box"/><text x="736.0" y="45" text-anchor="middle" class="svg-t">Publish</text><text x="736.0" y="64" text-anchor="middle" class="svg-s">clean-copy check</text></g><path d="M550.0 80 V118 H406.0 V82" class="svg-line" fill="none" marker-end="url(#ah)"/><text x="478.0" y="136" text-anchor="middle" class="svg-s">critic feedback: up to 3 rounds</text></svg></figure><ul><li><strong>Code graph.</strong> The JDK compiler parses <em>and attributes</em> every file, so a call edge points to the exact overload that is called, not to a name match. Nodes are classes, methods and fields; edges are calls, imports, inheritance and field writes. Calls through an interface fan out to every implementation.</li><li><strong>Retrieval.</strong> Okapi BM25 and a feature-hashed vector, merged by reciprocal rank fusion. Around a suspect, a two-hop traversal collects callers, callees, the fields it writes and the tests that reach it.</li><li><strong>Fault localization.</strong> Each method gets a score from four signals: spectrum (Ochiai suspiciousness using the call graph as coverage), stack frame, proximity to the failing test and text match with the failure message.</li><li><strong>Patch synthesis.</strong> The default synthesizer needs no model: it tries single-edit mutations (13 operators, such as flipping <code>&lt;</code> and <code>&lt;=</code>) inside the top three suspects. A model-backed synthesizer sits behind the same interface.</li><li><strong>Gate and verification.</strong> A patch may only change existing non-test source files, and at most 40 lines, so the agent cannot &ldquo;fix&rdquo; a test by editing it. Each candidate is built and tested in a sandbox and compared with the baseline: which tests it fixed, which previously passing tests it broke. The final diff is verified once more on a clean copy.</li><li><strong>Sandbox.</strong> A throwaway copy of the repository, an empty environment (no tokens inherited), CPU, memory and file-size limits, a watchdog that kills the process tree, and a private network namespace. A Docker sandbox is used automatically when a Docker daemon answers.</li><li><strong>Service.</strong> The GitHub webhook checks an HMAC-SHA256 signature in constant time before parsing the body, de-duplicates deliveries, and only clones repositories on an allow-list. Work goes through a bounded queue that answers <code>429</code> when full.</li></ul></section>
+<section class="panel" id="measured" aria-labelledby="measured-h"><h2 id="measured-h">What I measured</h2>
+<p>The benchmark holds <strong>20 seeded bugs</strong> in three small Java repositories (the route planner, the order service and the queue), split into 10 development and 10 test cases. I seeded the bugs myself.</p>
+<h3>Where is the bug?</h3>
+<p>Rank of the true buggy method among the suspects:</p><div class="tbl-wrap" tabindex="0" role="region" aria-label="Localization benchmark"><table><caption>Localization benchmark</caption><thead><tr><th scope="col">Signals</th><th scope="col">top-1</th><th scope="col">top-3</th><th scope="col">top-5</th><th scope="col">MRR</th></tr></thead><tbody><tr><th scope="row">stack trace only (baseline)</th><td>15%</td><td>15%</td><td>15%</td><td>0.15</td></tr><tr><th scope="row">text search only</th><td>15%</td><td>30%</td><td>35%</td><td>0.28</td></tr><tr><th scope="row">trace + text (no graph)</th><td>25%</td><td>30%</td><td>40%</td><td>0.34</td></tr><tr><th scope="row">call-graph spectrum only</th><td>15%</td><td>30%</td><td>45%</td><td>0.31</td></tr><tr><th scope="row"><strong>full (graph + trace + text)</strong></th><td>20%</td><td><strong>40%</strong></td><td>40%</td><td>0.34</td></tr></tbody></table></div>
+<h3>Can it fix it?</h3>
+<p>With the offline mutation synthesizer (no model) and three self-correction rounds, <strong>4 of 20 bugs were resolved (20%)</strong>, each verified on a clean checkout. That is 4 of the 15 bugs that one small edit can fix, and 0 of the 5 that need new code. Resolved runs took a median of 35 seconds (95th percentile 142 s).</p>
+<p>What the numbers say:</p><ul><li><strong>Most failures are localization failures.</strong> The synthesizer only mutates the top three suspects. In 9 of the 11 fixable bugs it did not repair, the true method was ranked 6th or lower, so the right line was never tried.</li><li><strong>The graph did not clearly help.</strong> Trace plus text without it has top-1 25% and MRR 0.34; the full variant 20% and 0.34. With 20 bugs, none of these differences is significant.</li><li>A likely cause, <strong>which I have not tested</strong>: these repositories have large classes and integration-style tests, so one failing test reaches dozens of methods and the spectrum signal cannot tell them apart.</li><li>The benchmark found a real bug in my own sandbox: the network namespace had its loopback device switched off, so HTTP tests could never pass inside it. It is fixed and tested, and the figures above are from after the fix.</li></ul></section>
+<section class="panel" id="verification" aria-labelledby="verification-h"><h2 id="verification-h">How it is tested</h2><ul><li>The diff engine is checked against <code>git apply</code> in both directions, including a 120-case fuzz, and refuses path traversal and partial application.</li><li>The state machine&rsquo;s table is checked for reachability, terminal states, and an error edge from every working state.</li><li>The pipeline runs end to end on a seeded bug, and with scripted synthesizers for critic feedback reaching round 2, a regression being refused, a patch that edits a test being rejected before the sandbox, a candidate that loops forever, and a final diff that fails re-verification.</li><li>Sandbox tests check isolation, not just success: the caller&rsquo;s directory is untouched, no secrets in the environment, children die with the parent, a fork bomb trips the limit, runaway output is capped.</li><li>The service is tested over real HTTP: every webhook status code, duplicates, backpressure, oversized bodies, API keys, and the browser-attack checks.</li><li>I planted 14 bugs in the code itself (a weakened signature check, a removed policy check, a skipped final re-verification, &hellip;) to see whether the tests notice. They did, after I added two tests for the two that first survived.</li></ul></section>
+<section class="limits" id="limits" aria-labelledby="limits-h"><h2 id="limits-h">What it doesn&rsquo;t do</h2><ul><li><strong>It is not SWE-bench-capable.</strong> Without a model it fixes bugs that are one small edit away. The model-backed path is tested only against stubs; I have not run it against the live API and make no claim about how well it works.</li><li><strong>Docker isolation has not been exercised.</strong> The tests check every flag of the command line, but the machine it was built on had no Docker daemon.</li><li><strong>A real GitHub pull request has not been opened.</strong> The publisher is tested against a local remote and a fake API.</li><li>The benchmark bugs were seeded by me, so they are plausible logic bugs, not a sample of real-world ones. <strong>The figures are not comparable with SWE-bench scores.</strong></li><li>Java only, and only projects whose tests print <code>PASS</code>/<code>FAIL</code> lines the bundled way.</li></ul></section>
+<nav class="pager" aria-label="More projects"><a class="prev" href="mini-sqs.html"><span>Previous project</span><strong>Mini-SQS</strong></a><a class="next" href="route-planner.html"><span>Next project</span><strong>Route planner</strong></a></nav>
+      </article>
+      <aside class="glance" aria-label="At a glance">
+        <div class="panel">
+          <h2>At a glance</h2>
+          <dl><div><dt>Result</dt><dd><span class="big">148 tests</span><br>A fixed bug is re-verified on a clean checkout before anything is published</dd></div><div><dt>Built with</dt><dd>Java 17, JDK compiler API, Linux namespaces, JavaScript</dd></div><div><dt>Year</dt><dd>2026</dd></div></dl>
+          <a class="btn" href="https://github.com/Samvibhanshu/agentic-bug-repair">Code on GitHub</a>
+        </div>
+        <nav class="panel toc" aria-label="On this page">
+          <h2>On this page</h2>
+          <ol><li><a href="#what">What it does</a></li><li><a href="#how">How it works</a></li><li><a href="#measured">What I measured</a></li><li><a href="#verification">How it is tested</a></li><li><a href="#limits">What it doesn&rsquo;t do</a></li></ol>
+        </nav>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="foot-inner">
+      <div>
+        <h2>Get in touch</h2>
+        <p>I&rsquo;m looking for software engineering internships. Write to <a href="mailto:samridhivibhanshu305@gmail.com">samridhivibhanshu305@gmail.com</a>.</p>
+        <p class="small">&copy; 2026 Samridhi Vibhanshu</p>
+      </div>
+      <ul class="foot-links" aria-label="Elsewhere">
+        <li><a href="https://github.com/Samvibhanshu">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/samridhi-vibhanshu-09771b27a/">LinkedIn</a></li>
+        <li><a href="mailto:samridhivibhanshu305@gmail.com">Email</a></li>
+        <li><a href="../Samridhi_Resume.pdf">Resume (PDF)</a></li>
+      </ul>
+    </div>
+  </footer>
+  <script src="../site.js"></script>
+</body>
+</html>

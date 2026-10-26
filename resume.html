@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resume | Samridhi Vibhanshu</title>
+  <meta name="description" content="Resume of Samridhi Vibhanshu: B.Tech CSE at VIT Vellore (CGPA 9.81), Java backend projects, six patent applications, three IEEE Access submissions.">
+  <link rel="canonical" href="https://samvibhanshu.github.io/resume.html">
+  <meta property="og:title" content="Resume | Samridhi Vibhanshu">
+  <meta property="og:description" content="Resume of Samridhi Vibhanshu: B.Tech CSE at VIT Vellore (CGPA 9.81), Java backend projects, six patent applications, three IEEE Access submissions.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://samvibhanshu.github.io/resume.html">
+  <meta property="og:image" content="https://samvibhanshu.github.io/assets/repair-dashboard.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2e1457">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232e1457'/%3E%3Ctext x='16' y='22.5' font-family='Arial,sans-serif' font-size='15' font-weight='700' fill='%23c79eff' text-anchor='middle'%3ESV%3C/text%3E%3C/svg%3E">
+  <script>
+    /* Set the saved theme before the page paints, so there is no flash. Dark is the default. */
+    try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="band">
+    <div class="band-inner">
+      <a class="brand" href="index.html"><span class="mark" aria-hidden="true">SV</span>Samridhi Vibhanshu</a>
+      <nav aria-label="Main"><a href="index.html">Home</a><a href="about.html">About</a><a href="projects/">Projects</a><a href="research.html">Research</a><a href="experience.html">Experience</a><a href="resume.html" aria-current="page">Resume</a></nav>
+      <button class="theme" type="button" id="theme" aria-label="Switch to light theme">Light</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="page-head">
+      <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="index.html">Home</a></li><li aria-current="page">Resume</li></ol></nav>
+      <h1>Resume</h1>
+      <p class="lede">The same one-page resume as the PDF, readable on any screen. Each project links to a page with the details.</p>
+      <p class="resume-actions"><a class="btn" href="Samridhi_Resume.pdf" download>Download PDF</a><a class="btn ghost" href="mailto:samridhivibhanshu305@gmail.com">Email me</a></p>
+    </div>
+    <section class="panel cv" aria-label="Resume">
+      <h2>Education</h2>
+      <div class="entry"><div class="entry-head"><h3>Vellore Institute of Technology, Vellore</h3><span>Aug 2023 &ndash; present</span></div><p class="sub">B.Tech. in Computer Science and Engineering, specialization in Business Studies. <strong>CGPA 9.81 / 10</strong></p></div>
+      <div class="entry"><div class="entry-head"><h3>Delhi Public School, Ranchi</h3><span>Apr 2023</span></div><p class="sub">Class XII (CBSE): 96.40%</p></div>
+      <h2>Projects</h2>
+      <div class="entry"><div class="entry-head"><h3><a href="projects/agentic-bug-repair.html">Agentic Bug Repair</a></h3><span>2026</span></div><p class="sub">Java 17, JDK Compiler API, Linux namespaces, JavaScript</p><ul><li>Built an agent that repairs failing Java builds: indexes the repo into a <strong>code graph</strong>, ranks suspect methods from call-graph coverage, stack traces and hybrid <strong>BM25/vector retrieval</strong>, and tests candidate patches in parallel.</li><li>Each patch runs in a <strong>sandbox</strong> (no network, resource limits, watchdog); a pull request is opened only if every test passes on a clean checkout. HMAC-verified GitHub webhook, bounded job queue, live dashboard; <strong>148 tests</strong>.</li></ul></div><div class="entry"><div class="entry-head"><h3><a href="projects/order-service.html">Order Service</a></h3><span>2026</span></div><p class="sub">Java 17, java.util.concurrent, JDK HTTP server</p><ul><li>E-commerce order backend over a JSON REST API that <strong>never oversells</strong>: per-SKU locks taken in sorted order prevent deadlock; 64 threads racing for the last 50 units always yield exactly 50 orders.</li><li><strong>Idempotency keys</strong> stop double charges on retry; state machine and outbox log; <strong>30 tests</strong> incl. 9,600 random workflows.</li></ul></div><div class="entry"><div class="entry-head"><h3><a href="projects/mini-sqs.html">Mini-SQS and Route Planner</a></h3><span>2026</span></div><p class="sub">Java 17, no dependencies</p><ul><li><strong>SQS-style queue</strong>: visibility timeouts, DLQs, FIFO dedup, long polling; <strong>26 tests</strong> incl. 600 randomized sequences.</li><li>Routing with Dijkstra, <strong>A*</strong>, Held&ndash;Karp and 2-opt, checked against Floyd&ndash;Warshall and brute force (<strong>19 tests</strong>); <a href="projects/route-planner.html">route planner</a>.</li></ul></div><div class="entry"><div class="entry-head"><h3><a href="projects/trust-decay-prediction.html">IS Trust Decay Prediction</a></h3><span>2026</span></div><p class="sub">Python, Flask, NetworkX, scikit-learn, SQLite, pytest</p><ul><li>Audit events feed a <strong>temporal knowledge graph</strong> whose node, history and graph features drive a <strong>Random Forest</strong> that forecasts each asset&rsquo;s trust decay 5 days ahead; chronological, purged splits prevent look-ahead leakage.</li><li>Daily top-5 audit list caught <strong>47%</strong> high-risk assets vs. <strong>31%</strong> at random (simulated); Flask <strong>REST API</strong>; <strong>68 tests</strong>.</li></ul></div><div class="entry"><div class="entry-head"><h3><a href="projects/risk-constrained-control.html">Risk-Constrained Emergency Control</a></h3><span>2026</span></div><p class="sub">Python, scikit-learn</p><ul><li>Ventilation control that tries a small <strong>reversible test action</strong> first and escalates only once it is confirmed safe.</li><li>Safety-gated classifier on 5,000 simulated records: <strong>0.8% false-safe rate</strong>, <strong>92.9% harmful-class recall</strong>.</li></ul></div><div class="entry"><div class="entry-head"><h3><a href="projects/hybrid-fall-detection.html">Hybrid Real-Time Fall Detection</a></h3><span>2026</span></div><p class="sub">Python, scikit-learn, C++, ESP32, MPU6050, Blynk IoT</p><ul><li>Random Forest on SisFall (3 s windows, 50% overlap); <strong>Edge AI wearable</strong> on ESP32 + MPU6050 that confirms falls by combining predictions with acceleration and orientation thresholds and alerts caregivers via Blynk IoT.</li></ul></div>
+      <h2>Patent applications</h2>
+      <p class="sub">6 filed through the VIT IPR Cell; 5 published</p>
+      <ul><li>Autonomous Wildfire Prediction and Response System, App. No. 202641083188 <span class="stack">(Published, Jul 2026)</span></li><li>Distributed Tremor Detection and Hazard Response in Mining, App. No. 202641075003 <span class="stack">(Published, Jun 2026)</span></li><li>Confidence-Weighted Opinion Lineage for Sentiment Aggregation, App. No. 202641115708 <span class="stack">(Published, Sep 2026)</span></li><li>Predictive Trust Assessment and Audit Prioritization of IS Assets, App. No. 202641108535 <span class="stack">(Published, 2026)</span></li><li>Risk-Constrained Emergency Control via Reversible Micro-Interventions <span class="stack">(Published, 2026)</span></li><li>AI-Enabled Predictive Railway Collision Avoidance <span class="stack">(Filed, 2026)</span></li></ul>
+      <h2>Papers</h2>
+      <p class="sub">Submitted to IEEE Access, 2026; under review</p>
+      <ul><li>Physics-Shielded Conformal Learning for Network-Aware Railway Collision-Risk Assessment Under Degraded Observations</li><li>Forecasting Information-System Trust Decay on Temporal Knowledge Graphs With Delayed-Feedback Conformal Audit Selection</li><li>Confidence-Weighted Opinion Lineage for Organic Sentiment Estimation Under Synthetic and Coordinated Amplification</li></ul>
+      <h2>Leadership</h2>
+      <div class="entry"><div class="entry-head"><h3>Computer Society of India (CSI-VIT)</h3><span>Apr 2024 &ndash; present</span></div><p class="sub">Board Member (Core Lead) | Full Stack Developer</p><ul><li>Promoted to <strong>Board Member (Core Lead)</strong> in Sep. 2025; lead development, design, operations and outreach teams.</li><li>Contributed to the Laser Tag platform (React.js, Tailwind CSS); built a GitHub contribution visualization.</li></ul></div>
+      <div class="entry"><div class="entry-head"><h3>Programme Representative, VIT</h3><span>Jul 2024 &ndash; present</span></div><p class="sub">Student&ndash;faculty liaison for 200+ students</p></div>
+      <h2>Technical skills</h2>
+      <ul>
+        <li><strong>Languages:</strong> Java, Python, JavaScript, TypeScript, SQL, C, C++, R, HTML, CSS</li>
+        <li><strong>Frameworks and libraries:</strong> React.js, Next.js, Redux, Tailwind CSS, Flask, scikit-learn, Pandas, NumPy, NetworkX, pytest</li>
+        <li><strong>Tools and platforms:</strong> Git, GitHub Actions, Linux, Postman, SQLite, OCI, ESP32, MPU6050, Blynk IoT</li>
+        <li><strong>Concepts:</strong> DSA, OOP, concurrency, DBMS, REST APIs, machine learning, RAG, edge AI, IoT</li>
+        <li><strong>Certifications:</strong> OCI 2025 Certified Generative AI Professional; OCI 2025 Certified AI Foundations Associate</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div class="foot-inner">
+      <div>
+        <h2>Get in touch</h2>
+        <p>I&rsquo;m looking for software engineering internships. Write to <a href="mailto:samridhivibhanshu305@gmail.com">samridhivibhanshu305@gmail.com</a>.</p>
+        <p class="small">&copy; 2026 Samridhi Vibhanshu</p>
+      </div>
+      <ul class="foot-links" aria-label="Elsewhere">
+        <li><a href="https://github.com/Samvibhanshu">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/samridhi-vibhanshu-09771b27a/">LinkedIn</a></li>
+        <li><a href="mailto:samridhivibhanshu305@gmail.com">Email</a></li>
+        <li><a href="Samridhi_Resume.pdf">Resume (PDF)</a></li>
+      </ul>
+    </div>
+  </footer>
+  <script src="site.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Notes app | Samridhi Vibhanshu</title>
+  <meta name="description" content="Create, edit, search, copy and delete notes, saved in the browser, with a store that cannot be crashed by bad saved data.">
+  <link rel="canonical" href="https://samvibhanshu.github.io/projects/notes-app.html">
+  <meta property="og:title" content="Notes app | Samridhi Vibhanshu">
+  <meta property="og:description" content="Create, edit, search, copy and delete notes, saved in the browser, with a store that cannot be crashed by bad saved data.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://samvibhanshu.github.io/projects/notes-app.html">
+  <meta property="og:image" content="https://samvibhanshu.github.io/assets/repair-dashboard.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2e1457">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232e1457'/%3E%3Ctext x='16' y='22.5' font-family='Arial,sans-serif' font-size='15' font-weight='700' fill='%23c79eff' text-anchor='middle'%3ESV%3C/text%3E%3C/svg%3E">
+  <script>
+    /* Set the saved theme before the page paints, so there is no flash. Dark is the default. */
+    try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="band">
+    <div class="band-inner">
+      <a class="brand" href="../index.html"><span class="mark" aria-hidden="true">SV</span>Samridhi Vibhanshu</a>
+      <nav aria-label="Main"><a href="../index.html">Home</a><a href="../about.html">About</a><a href="../projects/" aria-current="page">Projects</a><a href="../research.html">Research</a><a href="../experience.html">Experience</a><a href="../resume.html">Resume</a></nav>
+      <button class="theme" type="button" id="theme" aria-label="Switch to light theme">Light</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="page-head">
+      <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../index.html">Home</a></li><li><a href="index.html">Projects</a></li><li aria-current="page">Notes app</li></ol></nav>
+      <h1>Notes app</h1>
+      <p class="lede">Create, edit, search, copy and delete notes, saved in the browser, with a store that cannot be crashed by bad saved data.</p>
+      <ul class="meta" aria-label="Summary"><li>Web</li><li>13 tests</li></ul>
+    </div>
+    <div class="project">
+      <article>
+<section class="panel" id="what" aria-labelledby="what-h"><h2 id="what-h">What it does</h2><ul><li><strong>Create and edit</strong> from one form: opening a note for editing switches the button from Create to Update.</li><li><strong>Search</strong> notes by title as you type.</li><li><strong>View</strong> a note on its own page and <strong>copy</strong> its content in one click; deleting shows a toast.</li><li><strong>Persistence:</strong> the Redux store starts from <code>localStorage</code> and writes back only when the notes actually change.</li></ul></section>
+<section class="panel" id="design" aria-labelledby="design-h"><h2 id="design-h">Design notes</h2><ul><li><strong>Reducers are pure.</strong> Saving to storage and showing toasts used to happen inside the reducers. Redux requires reducers to be free of side effects, so saving is now a store subscriber and toasts come from the components. That also made the reducers testable on their own.</li><li><strong>Defensive views.</strong> Corrupted or blocked storage cannot crash the app: unreadable data is ignored and the app keeps working in memory. Opening a deleted note&rsquo;s link shows a message instead of crashing.</li><li><strong>Deployment.</strong> A rewrite rule sends every path to <code>index.html</code>, so a link to a single note keeps working on refresh instead of returning 404.</li><li><strong>Tests</strong> (Vitest) cover the reducers, safe loading, persistence and the note page.</li></ul></section>
+<section class="limits" id="limits" aria-labelledby="limits-h"><h2 id="limits-h">What it doesn&rsquo;t do</h2><ul><li>Everything is stored in the browser, so notes do not sync between devices and clearing site data deletes them.</li></ul></section>
+<nav class="pager" aria-label="More projects"><a class="prev" href="hybrid-fall-detection.html"><span>Previous project</span><strong>Hybrid real-time fall detection</strong></a><a class="next" href="found-it.html"><span>Next project</span><strong>Found-It</strong></a></nav>
+      </article>
+      <aside class="glance" aria-label="At a glance">
+        <div class="panel">
+          <h2>At a glance</h2>
+          <dl><div><dt>Result</dt><dd><span class="big">13 tests</span><br>CI runs lint, tests and build on every push</dd></div><div><dt>Built with</dt><dd>React 19, TypeScript, Redux Toolkit, Vite, Tailwind</dd></div></dl>
+          <a class="btn" href="https://github.com/Samvibhanshu/Notes-App">Code on GitHub</a>
+        </div>
+        <nav class="panel toc" aria-label="On this page">
+          <h2>On this page</h2>
+          <ol><li><a href="#what">What it does</a></li><li><a href="#design">Design notes</a></li><li><a href="#limits">What it doesn&rsquo;t do</a></li></ol>
+        </nav>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="foot-inner">
+      <div>
+        <h2>Get in touch</h2>
+        <p>I&rsquo;m looking for software engineering internships. Write to <a href="mailto:samridhivibhanshu305@gmail.com">samridhivibhanshu305@gmail.com</a>.</p>
+        <p class="small">&copy; 2026 Samridhi Vibhanshu</p>
+      </div>
+      <ul class="foot-links" aria-label="Elsewhere">
+        <li><a href="https://github.com/Samvibhanshu">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/samridhi-vibhanshu-09771b27a/">LinkedIn</a></li>
+        <li><a href="mailto:samridhivibhanshu305@gmail.com">Email</a></li>
+        <li><a href="../Samridhi_Resume.pdf">Resume (PDF)</a></li>
+      </ul>
+    </div>
+  </footer>
+  <script src="../site.js"></script>
+</body>
+</html>

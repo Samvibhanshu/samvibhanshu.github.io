@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wildfire risk prediction | Samridhi Vibhanshu</title>
+  <meta name="description" content="A wildfire-risk ensemble with resource orchestration and a live dashboard, built so that hotter, drier weather can never lower the predicted risk.">
+  <link rel="canonical" href="https://samvibhanshu.github.io/projects/wildfire-risk-prediction.html">
+  <meta property="og:title" content="Wildfire risk prediction | Samridhi Vibhanshu">
+  <meta property="og:description" content="A wildfire-risk ensemble with resource orchestration and a live dashboard, built so that hotter, drier weather can never lower the predicted risk.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://samvibhanshu.github.io/projects/wildfire-risk-prediction.html">
+  <meta property="og:image" content="https://samvibhanshu.github.io/assets/repair-dashboard.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2e1457">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232e1457'/%3E%3Ctext x='16' y='22.5' font-family='Arial,sans-serif' font-size='15' font-weight='700' fill='%23c79eff' text-anchor='middle'%3ESV%3C/text%3E%3C/svg%3E">
+  <script>
+    /* Set the saved theme before the page paints, so there is no flash. Dark is the default. */
+    try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="band">
+    <div class="band-inner">
+      <a class="brand" href="../index.html"><span class="mark" aria-hidden="true">SV</span>Samridhi Vibhanshu</a>
+      <nav aria-label="Main"><a href="../index.html">Home</a><a href="../about.html">About</a><a href="../projects/" aria-current="page">Projects</a><a href="../research.html">Research</a><a href="../experience.html">Experience</a><a href="../resume.html">Resume</a></nav>
+      <button class="theme" type="button" id="theme" aria-label="Switch to light theme">Light</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="page-head">
+      <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../index.html">Home</a></li><li><a href="index.html">Projects</a></li><li aria-current="page">Wildfire risk prediction</li></ol></nav>
+      <h1>Wildfire risk prediction</h1>
+      <p class="lede">A wildfire-risk ensemble with resource orchestration and a live dashboard, built so that hotter, drier weather can never lower the predicted risk.</p>
+      <ul class="meta" aria-label="Summary"><li>ML and research (Python)</li><li>71 tests</li></ul>
+    </div>
+    <div class="project">
+      <article>
+<section class="panel" id="what" aria-labelledby="what-h"><h2 id="what-h">What it is</h2>
+<p>An ML pipeline and Flask dashboard for the patent application <em>Autonomous Wildfire Prediction and Response System</em> (Indian application 202641083188): sensor readings are validated, three models vote on fire risk, a confidence measure says how much they agree, and an orchestrator allocates drones, trucks, tankers and personnel under scarcity.</p><figure class="diagram"><svg viewBox="0 0 800 102" role="img" aria-label="Pipeline: simulated sensors, validation, three-model ensemble, risk level with confidence, resource allocation." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="svg-arrow"/></marker></defs><g><rect x="0.0" y="20" width="128" height="58" rx="8" class="svg-box"/><text x="64.0" y="45" text-anchor="middle" class="svg-t">Sensors</text><text x="64.0" y="64" text-anchor="middle" class="svg-s">simulated</text></g><line x1="131.0" y1="49" x2="164.0" y2="49" class="svg-line" marker-end="url(#ah)"/><g><rect x="168.0" y="20" width="128" height="58" rx="8" class="svg-box"/><text x="232.0" y="45" text-anchor="middle" class="svg-t">Validation</text><text x="232.0" y="64" text-anchor="middle" class="svg-s">ranges, spikes</text></g><line x1="299.0" y1="49" x2="332.0" y2="49" class="svg-line" marker-end="url(#ah)"/><g><rect x="336.0" y="20" width="128" height="58" rx="8" class="svg-box"/><text x="400.0" y="45" text-anchor="middle" class="svg-t">Ensemble</text><text x="400.0" y="64" text-anchor="middle" class="svg-s">RF, GB, LR</text></g><line x1="467.0" y1="49" x2="500.0" y2="49" class="svg-line" marker-end="url(#ah)"/><g><rect x="504.0" y="20" width="128" height="58" rx="8" class="svg-box"/><text x="568.0" y="45" text-anchor="middle" class="svg-t">Risk + confidence</text><text x="568.0" y="64" text-anchor="middle" class="svg-s">four levels</text></g><line x1="635.0" y1="49" x2="668.0" y2="49" class="svg-line" marker-end="url(#ah)"/><g><rect x="672.0" y="20" width="128" height="58" rx="8" class="svg-box"/><text x="736.0" y="45" text-anchor="middle" class="svg-t">Allocation</text><text x="736.0" y="64" text-anchor="middle" class="svg-s">scarce resources</text></g></svg></figure></section>
+<section class="panel" id="numbers" aria-labelledby="numbers-h"><h2 id="numbers-h">What the numbers actually are</h2>
+<p>The disclosure lists <strong>projected</strong> figures of 90&ndash;95% accuracy. This code measures the real thing on the disclosure&rsquo;s own experiment (UCI Forest Fires, 517 records):</p><div class="tbl-wrap" tabindex="0" role="region" aria-label="Measured accuracy"><table><caption>Measured accuracy</caption><thead><tr><th scope="col"></th><th scope="col">Single split (test n = 78)</th><th scope="col">5-fold &times; 10 repeats</th></tr></thead><tbody><tr><th scope="row">Random Forest</th><td>accuracy 0.679, AUC 0.67</td><td>accuracy 0.580 &plusmn; 0.039, AUC 0.596</td></tr><tr><th scope="row">Gradient Boosting</th><td>accuracy 0.641, AUC 0.70</td><td>accuracy 0.564 &plusmn; 0.035, AUC 0.593</td></tr><tr><th scope="row">Logistic Regression</th><td>accuracy 0.603, AUC 0.61</td><td>accuracy 0.547 &plusmn; 0.043, AUC 0.551</td></tr><tr><th scope="row">Always predict the majority class</th><td>0.513</td><td>0.522</td></tr></tbody></table></div>
+<p>The models beat chance, but modestly. The 78-row test split is optimistic and noisy, so cross-validation is the steadier estimate; this dataset is known to be hard. Claims in the disclosure that did <strong>not</strong> hold up, and are reported as such: that confidence gating reduces false alarms, that the ensemble beats single models, and that temperature, wind and DMC are the most important features (park-grid position and calendar carry about 0.80 of the importance).</p><figure class="inline-fig"><img src="../assets/wildfire-heatmap.png" width="754" height="624" loading="lazy" alt="Heat map of recorded fire events per cell of a 9 by 8 park grid; the hottest cells reach about 30 events."><figcaption>Recorded fire events per park-grid cell.</figcaption></figure></section>
+<section class="panel" id="design" aria-labelledby="design-h"><h2 id="design-h">Design choices worth knowing</h2><ul><li><strong>Hotter, drier or windier can never mean lower risk.</strong> The Random Forest and Gradient Boosting models are trained with monotonic constraints on the fire-weather features. The earlier unconstrained models scored a simulated heatwave <em>lower</em> than a cool, wet day in 11 of 12 months; a fire-risk tool should not do that. Constraining them costs nothing measurable (AUC 0.595 against 0.583) and turns the property into a tested guarantee.</li><li><strong>Evacuation advisories need sign-off.</strong> The disclosure describes fully autonomous action; here the advisory is drafted automatically but stays pending approval.</li><li><strong>Simulated data can never retrain the model.</strong> Only outcomes a person records against a logged prediction count, and there must be at least 30 with both classes present.</li><li><strong>Champion and challenger.</strong> A retrained model replaces the current one only if it does not lose on a hold-out set.</li></ul></section>
+<section class="limits" id="limits" aria-labelledby="limits-h"><h2 id="limits-h">What it doesn&rsquo;t do</h2><ul><li>517 records from one park (2000&ndash;2003) with weather-index inputs only, and a label that treats a 0.1 ha fire and a 1,000 ha fire the same.</li><li>Sensors are simulated and actions go through a simulated gateway. Nothing controls real equipment.</li><li>Not implemented: the image and time-series models the disclosure defers, MQTT ingestion, edge packaging and alerts. It runs as a single process.</li></ul></section>
+<nav class="pager" aria-label="More projects"><a class="prev" href="risk-constrained-control.html"><span>Previous project</span><strong>Risk-constrained emergency control</strong></a><a class="next" href="hybrid-fall-detection.html"><span>Next project</span><strong>Hybrid real-time fall detection</strong></a></nav>
+      </article>
+      <aside class="glance" aria-label="At a glance">
+        <div class="panel">
+          <h2>At a glance</h2>
+          <dl><div><dt>Result</dt><dd><span class="big">71 tests</span><br>Measured accuracy is reported next to the patent's projected figures</dd></div><div><dt>Built with</dt><dd>Python, scikit-learn, Flask, SQLite</dd></div><div><dt>Patent application</dt><dd><a href="../research.html#patents">No. 202641083188</a></dd></div></dl>
+          <a class="btn" href="https://github.com/Samvibhanshu/Autonomous-Wildfire-Prediction-Response-System">Code on GitHub</a>
+        </div>
+        <nav class="panel toc" aria-label="On this page">
+          <h2>On this page</h2>
+          <ol><li><a href="#what">What it is</a></li><li><a href="#numbers">What the numbers actually are</a></li><li><a href="#design">Design choices worth knowing</a></li><li><a href="#limits">What it doesn&rsquo;t do</a></li></ol>
+        </nav>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="foot-inner">
+      <div>
+        <h2>Get in touch</h2>
+        <p>I&rsquo;m looking for software engineering internships. Write to <a href="mailto:samridhivibhanshu305@gmail.com">samridhivibhanshu305@gmail.com</a>.</p>
+        <p class="small">&copy; 2026 Samridhi Vibhanshu</p>
+      </div>
+      <ul class="foot-links" aria-label="Elsewhere">
+        <li><a href="https://github.com/Samvibhanshu">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/samridhi-vibhanshu-09771b27a/">LinkedIn</a></li>
+        <li><a href="mailto:samridhivibhanshu305@gmail.com">Email</a></li>
+        <li><a href="../Samridhi_Resume.pdf">Resume (PDF)</a></li>
+      </ul>
+    </div>
+  </footer>
+  <script src="../site.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Risk-constrained emergency control | Samridhi Vibhanshu</title>
+  <meta name="description" content="Screens a candidate emergency action with a safety-gated classifier before any physical test, so a harmful one is rejected early.">
+  <link rel="canonical" href="https://samvibhanshu.github.io/projects/risk-constrained-control.html">
+  <meta property="og:title" content="Risk-constrained emergency control | Samridhi Vibhanshu">
+  <meta property="og:description" content="Screens a candidate emergency action with a safety-gated classifier before any physical test, so a harmful one is rejected early.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://samvibhanshu.github.io/projects/risk-constrained-control.html">
+  <meta property="og:image" content="https://samvibhanshu.github.io/assets/repair-dashboard.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2e1457">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232e1457'/%3E%3Ctext x='16' y='22.5' font-family='Arial,sans-serif' font-size='15' font-weight='700' fill='%23c79eff' text-anchor='middle'%3ESV%3C/text%3E%3C/svg%3E">
+  <script>
+    /* Set the saved theme before the page paints, so there is no flash. Dark is the default. */
+    try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="band">
+    <div class="band-inner">
+      <a class="brand" href="../index.html"><span class="mark" aria-hidden="true">SV</span>Samridhi Vibhanshu</a>
+      <nav aria-label="Main"><a href="../index.html">Home</a><a href="../about.html">About</a><a href="../projects/" aria-current="page">Projects</a><a href="../research.html">Research</a><a href="../experience.html">Experience</a><a href="../resume.html">Resume</a></nav>
+      <button class="theme" type="button" id="theme" aria-label="Switch to light theme">Light</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="page-head">
+      <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../index.html">Home</a></li><li><a href="index.html">Projects</a></li><li aria-current="page">Risk-constrained emergency control</li></ol></nav>
+      <h1>Risk-constrained emergency control</h1>
+      <p class="lede">Screens a candidate emergency action with a safety-gated classifier before any physical test, so a harmful one is rejected early.</p>
+      <ul class="meta" aria-label="Summary"><li>ML and research (Python)</li><li>2026</li></ul>
+    </div>
+    <div class="project">
+      <article>
+<section class="panel" id="what" aria-labelledby="what-h"><h2 id="what-h">What it does</h2>
+<p>The machine-learning and control layer of a patent application on emergency control using reversible micro-interventions. The idea: before taking a large action in an emergency (here, ventilation to protect a zone), try a small action that can be undone, and escalate only when the measured response confirms it protects.</p>
+<p>The classifier predicts whether a candidate micro-intervention will be <strong>Protective, Harmful, Ineffective or Inconsistent</strong> <em>before</em> it is physically tested. It is only the first safety layer: escalation to a full action still requires the measured response to confirm protection.</p><figure class="diagram"><svg viewBox="0 0 800 102" role="img" aria-label="Flow: candidate micro-intervention, screening by classifier and safety gate, small reversible test, measured response, then escalate or roll back." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="svg-arrow"/></marker></defs><g><rect x="0.0" y="20" width="128" height="58" rx="8" class="svg-box"/><text x="64.0" y="45" text-anchor="middle" class="svg-t">Candidate</text><text x="64.0" y="64" text-anchor="middle" class="svg-s">micro-intervention</text></g><line x1="131.0" y1="49" x2="164.0" y2="49" class="svg-line" marker-end="url(#ah)"/><g><rect x="168.0" y="20" width="128" height="58" rx="8" class="svg-box"/><text x="232.0" y="45" text-anchor="middle" class="svg-t">Screen</text><text x="232.0" y="64" text-anchor="middle" class="svg-s">classifier + safety gate</text></g><line x1="299.0" y1="49" x2="332.0" y2="49" class="svg-line" marker-end="url(#ah)"/><g><rect x="336.0" y="20" width="128" height="58" rx="8" class="svg-box"/><text x="400.0" y="45" text-anchor="middle" class="svg-t">Small test</text><text x="400.0" y="64" text-anchor="middle" class="svg-s">reversible</text></g><line x1="467.0" y1="49" x2="500.0" y2="49" class="svg-line" marker-end="url(#ah)"/><g><rect x="504.0" y="20" width="128" height="58" rx="8" class="svg-box"/><text x="568.0" y="45" text-anchor="middle" class="svg-t">Measure</text><text x="568.0" y="64" text-anchor="middle" class="svg-s">response confirms?</text></g><line x1="635.0" y1="49" x2="668.0" y2="49" class="svg-line" marker-end="url(#ah)"/><g><rect x="672.0" y="20" width="128" height="58" rx="8" class="svg-box"/><text x="736.0" y="45" text-anchor="middle" class="svg-t">Escalate</text><text x="736.0" y="64" text-anchor="middle" class="svg-s">or roll back</text></g></svg></figure></section>
+<section class="panel" id="method" aria-labelledby="method-h"><h2 id="method-h">Method</h2><ul><li><strong>Data:</strong> 5,000 records from a four-zone, source-informed simulator, with labels from stated rules (for example Harmful if the protected-zone concentration rises by more than 6).</li><li><strong>Leakage prevention:</strong> the outcome measurements are never model inputs.</li><li><strong>Models:</strong> Random Forest, Gradient Boosting and Logistic Regression on the same stratified 80:20 split.</li><li><strong>Safety gate:</strong> an action is called Protective only if P(Protective) is at least a threshold. The threshold is tuned with 5-fold out-of-fold predictions on the <em>training</em> set to keep the false-safe rate at or below 1%. The test set is never used for tuning.</li><li><strong>Selection:</strong> lowest test false-safe rate first, then highest harmful recall, then weighted F1.</li></ul></section>
+<section class="panel" id="results" aria-labelledby="results-h"><h2 id="results-h">Results</h2><div class="tbl-wrap" tabindex="0" role="region" aria-label="Model comparison on the held-out test split"><table><caption>Model comparison on the held-out test split</caption><thead><tr><th scope="col">Model</th><th scope="col">Accuracy</th><th scope="col">Harmful recall</th><th scope="col">False-safe rate</th><th scope="col">Threshold</th></tr></thead><tbody><tr><th scope="row">Random Forest</th><td>76.6%</td><td>92.4%</td><td>1.01%</td><td>0.69</td></tr><tr><th scope="row"><strong>Gradient Boosting (selected)</strong></th><td><strong>77.1%</strong></td><td><strong>92.9%</strong></td><td><strong>0.76%</strong></td><td>0.84</td></tr><tr><th scope="row">Logistic Regression</th><td>77.3%</td><td>90.4%</td><td>0.76%</td><td>0.85</td></tr></tbody></table></div><figure class="inline-fig"><img src="../assets/risk-models.png" width="1200" height="630" loading="lazy" alt="Bar chart comparing accuracy, weighted F1 and harmful recall for Random Forest, Gradient Boosting and Logistic Regression; harmful recall is highest at 92.9 percent for Gradient Boosting."><figcaption>Accuracy, weighted F1 and harmful recall for the three models.</figcaption></figure>
+<p>The false-safe rate is the share of truly harmful actions that the gate let through as Protective: <strong>3 of 396</strong> harmful test cases for the selected model. Without the gate the same model scores higher accuracy (80.8%) but a false-safe rate of 2.0%, which is the trade the gate makes on purpose. In the control-layer analysis, 72.0% of harmful cases were flagged before the protected-zone rise crossed a 10-unit threshold, and rollback succeeded in 72.3% of eligible cases.</p></section>
+<section class="limits" id="limits" aria-labelledby="limits-h"><h2 id="limits-h">What it doesn&rsquo;t do</h2><ul><li><strong>It is a controlled simulation</strong> with prototype thresholds. The results validate the software decision logic, not a physical deployment.</li><li>The labels come from rules I wrote, and the classifier learns those rules; do not read the accuracy as evidence about real ventilation systems.</li><li>Every run is reproducible (seed 42), which is what lets you check the numbers.</li></ul></section>
+<nav class="pager" aria-label="More projects"><a class="prev" href="trust-decay-prediction.html"><span>Previous project</span><strong>IS trust decay prediction</strong></a><a class="next" href="wildfire-risk-prediction.html"><span>Next project</span><strong>Wildfire risk prediction</strong></a></nav>
+      </article>
+      <aside class="glance" aria-label="At a glance">
+        <div class="panel">
+          <h2>At a glance</h2>
+          <dl><div><dt>Result</dt><dd><span class="big">0.8% false-safe</span><br>92.9% of harmful interventions caught on 5,000 simulated records</dd></div><div><dt>Built with</dt><dd>Python, scikit-learn</dd></div><div><dt>Year</dt><dd>2026</dd></div><div><dt>Patent application</dt><dd><a href="../research.html#patents">Published, 2026</a></dd></div></dl>
+          <a class="btn" href="https://github.com/Samvibhanshu/Risk-Constrained-Emergency-Control-System">Code on GitHub</a>
+        </div>
+        <nav class="panel toc" aria-label="On this page">
+          <h2>On this page</h2>
+          <ol><li><a href="#what">What it does</a></li><li><a href="#method">Method</a></li><li><a href="#results">Results</a></li><li><a href="#limits">What it doesn&rsquo;t do</a></li></ol>
+        </nav>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="foot-inner">
+      <div>
+        <h2>Get in touch</h2>
+        <p>I&rsquo;m looking for software engineering internships. Write to <a href="mailto:samridhivibhanshu305@gmail.com">samridhivibhanshu305@gmail.com</a>.</p>
+        <p class="small">&copy; 2026 Samridhi Vibhanshu</p>
+      </div>
+      <ul class="foot-links" aria-label="Elsewhere">
+        <li><a href="https://github.com/Samvibhanshu">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/samridhi-vibhanshu-09771b27a/">LinkedIn</a></li>
+        <li><a href="mailto:samridhivibhanshu305@gmail.com">Email</a></li>
+        <li><a href="../Samridhi_Resume.pdf">Resume (PDF)</a></li>
+      </ul>
+    </div>
+  </footer>
+  <script src="../site.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Opinion lineage | Samridhi Vibhanshu</title>
+  <meta name="description" content="Measures what people actually think on social media by tracking which posts copy which, and corrects the result when a source is retracted.">
+  <link rel="canonical" href="https://samvibhanshu.github.io/projects/opinion-lineage.html">
+  <meta property="og:title" content="Opinion lineage | Samridhi Vibhanshu">
+  <meta property="og:description" content="Measures what people actually think on social media by tracking which posts copy which, and corrects the result when a source is retracted.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://samvibhanshu.github.io/projects/opinion-lineage.html">
+  <meta property="og:image" content="https://samvibhanshu.github.io/assets/repair-dashboard.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2e1457">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232e1457'/%3E%3Ctext x='16' y='22.5' font-family='Arial,sans-serif' font-size='15' font-weight='700' fill='%23c79eff' text-anchor='middle'%3ESV%3C/text%3E%3C/svg%3E">
+  <script>
+    /* Set the saved theme before the page paints, so there is no flash. Dark is the default. */
+    try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="band">
+    <div class="band-inner">
+      <a class="brand" href="../index.html"><span class="mark" aria-hidden="true">SV</span>Samridhi Vibhanshu</a>
+      <nav aria-label="Main"><a href="../index.html">Home</a><a href="../about.html">About</a><a href="../projects/" aria-current="page">Projects</a><a href="../research.html">Research</a><a href="../experience.html">Experience</a><a href="../resume.html">Resume</a></nav>
+      <button class="theme" type="button" id="theme" aria-label="Switch to light theme">Light</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="page-head">
+      <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../index.html">Home</a></li><li><a href="index.html">Projects</a></li><li aria-current="page">Opinion lineage</li></ol></nav>
+      <h1>Opinion lineage</h1>
+      <p class="lede">Measures what people actually think on social media by tracking which posts copy which, and corrects the result when a source is retracted.</p>
+      <ul class="meta" aria-label="Summary"><li>ML and research (Python)</li><li>2026</li><li>27 tests</li></ul>
+    </div>
+    <div class="project">
+      <article>
+<section class="panel" id="problem" aria-labelledby="problem-h"><h2 id="problem-h">The problem</h2>
+<p>Social-media sentiment is usually measured by counting posts, so one opinion copied a thousand times (reposts, paraphrases, AI rewrites, coordinated campaigns) counts a thousand times. This project builds a graph of which post derives from which, weights every post by how independent it is, and reports <em>organic</em> sentiment next to the raw count.</p>
+<p>When a source is later found to be fake, only the posts that descend from it are re-weighted, with no model re-runs, and the result equals a full recomputation. A retrieval-augmented question-answering layer on top answers &ldquo;how do people feel about X?&rdquo; from provenance-weighted evidence, cites independent posts, and abstains when too little independent evidence is left.</p>
+<p>It is the working code for the patent application <em>Confidence-Weighted Opinion Lineage for Sentiment Aggregation</em> (Indian application 202641115708). Every formula of the disclosure is implemented, tested and benchmarked against baselines on a controlled synthetic stream.</p></section>
+<section class="panel" id="results" aria-labelledby="results-h"><h2 id="results-h">Results</h2>
+<h3>Error against contamination</h3>
+<p>Distance to the ground-truth organic sentiment, 6,000 posts, 12 seeds (lower is better):</p><div class="tbl-wrap" tabindex="0" role="region" aria-label="Reconstruction error against contamination"><table><caption>Reconstruction error against contamination</caption><thead><tr><th scope="col">Method</th><th scope="col">0%</th><th scope="col">20%</th><th scope="col">40%</th><th scope="col">50%</th></tr></thead><tbody><tr><th scope="row">Raw aggregation</th><td>0.0077</td><td>0.0170</td><td>0.0378</td><td>0.0468</td></tr><tr><th scope="row">Deduplication (threshold 0.90)</th><td>0.0077</td><td>0.0103</td><td>0.0249</td><td>0.0339</td></tr><tr><th scope="row">Message-level weighting</th><td>0.0077</td><td>0.0124</td><td>0.0290</td><td>0.0362</td></tr><tr><th scope="row">Tree-normalised weighting (1 / lineage size)</th><td>0.0079</td><td>0.0077</td><td>0.0076</td><td>0.0088</td></tr><tr><th scope="row"><strong>Proposed (inferred lineage)</strong></th><td><strong>0.0077</strong></td><td><strong>0.0076</strong></td><td><strong>0.0068</strong></td><td><strong>0.0086</strong></td></tr><tr><th scope="row">Deduplication, threshold tuned on ground truth</th><td>0.0073</td><td>0.0043</td><td>0.0062</td><td>0.0078</td></tr></tbody></table></div><figure class="inline-fig"><img src="../assets/lineage-error.png" width="1000" height="358" loading="lazy" alt="Line chart: error in estimated sentiment as the share of copied or coordinated posts grows, for raw counting, deduplication, message weighting and the lineage method."><figcaption>Error against the share of contaminated posts. The lineage method stays flat; raw counting climbs.</figcaption></figure>
+<p>The last row is an optimistic baseline, because its threshold is picked using the answer. Against it the proposed method is <strong>comparable, not better</strong>. A simple tree-normalised weighting, which counts every lineage once using the same inferred lineage, is close behind, so most of the gain comes from knowing the lineage rather than from the exact formula.</p>
+<h3>Correcting a retraction</h3>
+<p>With 50,000 records, retracting 200 invalid sources touches 2.3% of the records and takes <strong>16 ms against 511 ms</strong> for full reprocessing, with 0 model re-runs against 100,000, and the result matches full recomputation to 2.6e-15.</p><figure class="inline-fig"><img src="../assets/lineage-rollback.png" width="1400" height="390" loading="lazy" alt="Three bar charts for scenarios A, B and C: records touched (2 to 5 percent for selective rollback against 100 percent for full reprocessing), correction time on a log scale, and the maximum difference from full recomputation, near 1e-15."><figcaption>Selective rollback against full reprocessing in three scenarios.</figcaption></figure></section>
+<section class="panel" id="rag" aria-labelledby="rag-h"><h2 id="rag-h">The question-answering layer</h2>
+<p>A text index (TF-IDF, deliberately unaware of lineage) returns the top candidates; the lineage layer keeps <strong>one evidence slot per lineage</strong>, ranks by relevance &times; weight, and abstains below an evidence floor. The generator is extractive, so it cannot hallucinate, and a checker audits every statistic and quote in an answer. A wrapper for a language model rejects answers that cite posts outside the evidence.</p>
+<p>At 40% contamination plain retrieval gives the reader eight posts of which 4% are independent opinions; the lineage-aware answer shows 89% independent posts. Answer error falls from 0.098 (counting all 300 retrieved posts) to 0.061, a clear win over plain retrieval.</p></section>
+<section class="limits" id="limits" aria-labelledby="limits-h"><h2 id="limits-h">What it doesn&rsquo;t do</h2><ul><li><strong>The data is simulated</strong>, not a real dataset: embeddings from a fixed random encoder, a sentiment classifier of about 70% accuracy. Only the relative behaviour is comparable.</li><li><strong>No win over a strong simple baseline.</strong> Text deduplication plus a provenance score is as accurate as the lineage-aware answer (0.0579 against 0.0611 at 40%, p = 0.55). The lineage layer&rsquo;s distinct contributions are explicit amplification accounting, principled propagation of a retraction, and exact, cheap correction.</li><li>The models are tiny stand-ins, so wall-clock gaps would be much larger with real transformers. The count of model runs (0 against 100,000) is the robust claim.</li><li>No real language model was called; the model wrapper is tested with a stub only.</li><li>Lineage construction is exact O(N&sup2;) similarity (about 12 s for 50,000 records); production scale would need an approximate nearest-neighbour index.</li></ul></section>
+<nav class="pager" aria-label="More projects"><a class="prev" href="route-planner.html"><span>Previous project</span><strong>Route planner</strong></a><a class="next" href="trust-decay-prediction.html"><span>Next project</span><strong>IS trust decay prediction</strong></a></nav>
+      </article>
+      <aside class="glance" aria-label="At a glance">
+        <div class="panel">
+          <h2>At a glance</h2>
+          <dl><div><dt>Result</dt><dd><span class="big">27 tests</span><br>With 40% coordinated content, error 0.007 vs 0.038 for a raw count (simulated stream)</dd></div><div><dt>Built with</dt><dd>Python, NumPy, scikit-learn, networkx</dd></div><div><dt>Year</dt><dd>2026</dd></div><div><dt>Patent application</dt><dd><a href="../research.html#patents">No. 202641115708</a></dd></div></dl>
+          <a class="btn" href="https://github.com/Samvibhanshu/opinion-lineage">Code on GitHub</a>
+        </div>
+        <nav class="panel toc" aria-label="On this page">
+          <h2>On this page</h2>
+          <ol><li><a href="#problem">The problem</a></li><li><a href="#results">Results</a></li><li><a href="#rag">The question-answering layer</a></li><li><a href="#limits">What it doesn&rsquo;t do</a></li></ol>
+        </nav>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="foot-inner">
+      <div>
+        <h2>Get in touch</h2>
+        <p>I&rsquo;m looking for software engineering internships. Write to <a href="mailto:samridhivibhanshu305@gmail.com">samridhivibhanshu305@gmail.com</a>.</p>
+        <p class="small">&copy; 2026 Samridhi Vibhanshu</p>
+      </div>
+      <ul class="foot-links" aria-label="Elsewhere">
+        <li><a href="https://github.com/Samvibhanshu">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/samridhi-vibhanshu-09771b27a/">LinkedIn</a></li>
+        <li><a href="mailto:samridhivibhanshu305@gmail.com">Email</a></li>
+        <li><a href="../Samridhi_Resume.pdf">Resume (PDF)</a></li>
+      </ul>
+    </div>
+  </footer>
+  <script src="../site.js"></script>
+</body>
+</html>
