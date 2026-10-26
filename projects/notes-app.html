@@ -44,7 +44,6 @@
       <article>
 <section class="panel" id="what" aria-labelledby="what-h"><h2 id="what-h">What it does</h2><ul><li><strong>Create and edit</strong> from one form: opening a note for editing switches the button from Create to Update.</li><li><strong>Search</strong> notes by title as you type.</li><li><strong>View</strong> a note on its own page and <strong>copy</strong> its content in one click; deleting shows a toast.</li><li><strong>Persistence:</strong> the Redux store starts from <code>localStorage</code> and writes back only when the notes actually change.</li></ul></section>
 <section class="panel" id="design" aria-labelledby="design-h"><h2 id="design-h">Design notes</h2><ul><li><strong>Reducers are pure.</strong> Saving to storage and showing toasts used to happen inside the reducers. Redux requires reducers to be free of side effects, so saving is now a store subscriber and toasts come from the components. That also made the reducers testable on their own.</li><li><strong>Defensive views.</strong> Corrupted or blocked storage cannot crash the app: unreadable data is ignored and the app keeps working in memory. Opening a deleted note&rsquo;s link shows a message instead of crashing.</li><li><strong>Deployment.</strong> A rewrite rule sends every path to <code>index.html</code>, so a link to a single note keeps working on refresh instead of returning 404.</li><li><strong>Tests</strong> (Vitest) cover the reducers, safe loading, persistence and the note page.</li></ul></section>
-<section class="limits" id="limits" aria-labelledby="limits-h"><h2 id="limits-h">What it doesn&rsquo;t do</h2><ul><li>Everything is stored in the browser, so notes do not sync between devices and clearing site data deletes them.</li></ul></section>
 <nav class="pager" aria-label="More projects"><a class="prev" href="hybrid-fall-detection.html"><span>Previous project</span><strong>Hybrid real-time fall detection</strong></a><a class="next" href="found-it.html"><span>Next project</span><strong>Found-It</strong></a></nav>
       </article>
       <aside class="glance" aria-label="At a glance">
@@ -55,7 +54,7 @@
         </div>
         <nav class="panel toc" aria-label="On this page">
           <h2>On this page</h2>
-          <ol><li><a href="#what">What it does</a></li><li><a href="#design">Design notes</a></li><li><a href="#limits">What it doesn&rsquo;t do</a></li></ol>
+          <ol><li><a href="#what">What it does</a></li><li><a href="#design">Design notes</a></li></ol>
         </nav>
       </aside>
     </div>

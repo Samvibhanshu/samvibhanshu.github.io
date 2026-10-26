@@ -59,7 +59,6 @@
 <p><strong>A bug the new tests found in code that already existed:</strong> every HTTP response took about 40 ms. The JDK&rsquo;s built-in server leaves Nagle&rsquo;s algorithm on and writes the headers and the body separately, so the body waited for the client&rsquo;s delayed ACK. With <code>TCP_NODELAY</code> the mean is about 2 ms, and a test guards it.</p>
 </section>
 <section class="panel" id="production" aria-labelledby="production-h"><h2 id="production-h">What would change in production</h2><div class="tbl-wrap" tabindex="0" role="region" aria-label="Prototype versus production"><table><caption>Prototype versus production</caption><thead><tr><th scope="col">Here</th><th scope="col">In production</th></tr></thead><tbody><tr><th scope="row">One process: a journal file plus in-memory maps and per-SKU locks</th><td>A database conditional update, or a DynamoDB conditional write: <a href="order-service-aws.html">order-service-aws</a> is this service on DynamoDB</td></tr><tr><th scope="row">The journal is replayed in full on start</th><td>Periodic snapshots, so a restart replays only the records after the latest one</td></tr><tr><th scope="row">One copy of the journal</th><td>Replication to other machines before acknowledging</td></tr><tr><th scope="row">Reservations never expire</th><td>Unpaid orders auto-cancel after N minutes to free stock</td></tr></tbody></table></div></section>
-<section class="limits" id="limits" aria-labelledby="limits-h"><h2 id="limits-h">What it doesn&rsquo;t do</h2><ul><li>One process: the locking guarantees do not extend across servers (<a href="order-service-aws.html">order-service-aws</a> does that with DynamoDB).</li><li>One copy of the journal on one disk: a disk failure loses data.</li><li>The crash test kills the process, not the machine. Data already handed to the operating system survives SIGKILL even without an fsync; protection against a power cut rests on the fsyncs and the design, which a test cannot easily show.</li><li>No snapshots yet, so restart time grows with the journal (about 5 s for 600,000 records).</li></ul></section>
 <nav class="pager" aria-label="More projects"><a class="next" href="order-service-aws.html"><span>Next project</span><strong>Order service on AWS</strong></a></nav>
       </article>
       <aside class="glance" aria-label="At a glance">
@@ -70,7 +69,7 @@
         </div>
         <nav class="panel toc" aria-label="On this page">
           <h2>On this page</h2>
-          <ol><li><a href="#problem">The four things that go wrong</a></li><li><a href="#guarantees">The guarantees and how each is enforced</a></li><li><a href="#durability">Durability: the write-ahead log</a></li><li><a href="#tests">Do the tests catch real bugs?</a></li><li><a href="#production">What would change in production</a></li><li><a href="#limits">What it doesn&rsquo;t do</a></li></ol>
+          <ol><li><a href="#problem">The four things that go wrong</a></li><li><a href="#guarantees">The guarantees and how each is enforced</a></li><li><a href="#durability">Durability: the write-ahead log</a></li><li><a href="#tests">Do the tests catch real bugs?</a></li><li><a href="#production">What would change in production</a></li></ol>
         </nav>
       </aside>
     </div>

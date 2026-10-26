@@ -74,7 +74,7 @@
     <a class="name" href="projects/order-service.html">Order service</a>
     <p>Place, pay, ship and cancel orders over a JSON HTTP API. It never oversells under concurrency, never charges twice when a payment is retried, only allows legal state changes, and keeps every acknowledged order through a crash with a write-ahead log.</p>
     <p class="stack">Java 17, java.util.concurrent, JDK HTTP server</p>
-    <p class="row-links"><a href="projects/order-service.html">How it works and what it doesn&rsquo;t do</a><a href="https://github.com/Samvibhanshu/order-service">Code on GitHub</a></p>
+    <p class="row-links"><a href="projects/order-service.html">How it works</a><a href="https://github.com/Samvibhanshu/order-service">Code on GitHub</a></p>
   </div>
   <p class="proof"><strong>44 tests</strong>Killed with kill -9 mid-traffic, four times: no acknowledged order lost</p>
 </li><li data-cat="java" data-text="order service on aws the order service as a serverless aws service: api gateway, lambda (java) and dynamodb in one sam template. no overselling and no double charge across any number of lambda instances, enforced by dynamodb conditional writes and transactions. aws request signing written from scratch. java 17, aws lambda, api gateway, dynamodb, sam systems (java)">
@@ -82,7 +82,7 @@
     <a class="name" href="projects/order-service-aws.html">Order service on AWS</a>
     <p>The order service as a serverless AWS service: API Gateway, Lambda (Java) and DynamoDB in one SAM template. No overselling and no double charge across any number of Lambda instances, enforced by DynamoDB conditional writes and transactions. AWS request signing written from scratch.</p>
     <p class="stack">Java 17, AWS Lambda, API Gateway, DynamoDB, SAM</p>
-    <p class="row-links"><a href="projects/order-service-aws.html">How it works and what it doesn&rsquo;t do</a><a href="https://github.com/Samvibhanshu/order-service-aws">Code on GitHub</a></p>
+    <p class="row-links"><a href="projects/order-service-aws.html">How it works</a><a href="https://github.com/Samvibhanshu/order-service-aws">Code on GitHub</a></p>
   </div>
   <p class="proof"><strong>18 tests</strong>32 requests race for the last 20 units against DynamoDB's API: exactly 20 succeed</p>
 </li><li data-cat="java" data-text="mini-sqs a message queue with amazon sqs semantics: visibility timeouts, receipt handles, dead-letter queues and redrive, fifo groups with deduplication, long polling. it runs as a library or as a network service that speaks sqs's own protocol, so the official aws sdk can use it. java 17, no dependencies systems (java)">
@@ -90,7 +90,7 @@
     <a class="name" href="projects/mini-sqs.html">Mini-SQS</a>
     <p>A message queue with Amazon SQS semantics: visibility timeouts, receipt handles, dead-letter queues and redrive, FIFO groups with deduplication, long polling. It runs as a library or as a network service that speaks SQS's own protocol, so the official AWS SDK can use it.</p>
     <p class="stack">Java 17, no dependencies</p>
-    <p class="row-links"><a href="projects/mini-sqs.html">How it works and what it doesn&rsquo;t do</a><a href="https://github.com/Samvibhanshu/mini-sqs">Code on GitHub</a></p>
+    <p class="row-links"><a href="projects/mini-sqs.html">How it works</a><a href="https://github.com/Samvibhanshu/mini-sqs">Code on GitHub</a></p>
   </div>
   <p class="proof"><strong>39 tests</strong>The AWS SDK for Python passes 27 checks against it; 600 random sequences lose no message</p>
 </li><li data-cat="java" data-text="agentic bug repair takes a java repository with failing tests and tries to fix it: measures which methods each test runs, ranks where the bug probably is, tries small patches in an isolated sandbox, and only proposes a pull request whose diff passes every test on a clean checkout. java 17, jdk compiler api, linux namespaces, javascript systems (java)">
@@ -98,7 +98,7 @@
     <a class="name" href="projects/agentic-bug-repair.html">Agentic bug repair</a>
     <p>Takes a Java repository with failing tests and tries to fix it: measures which methods each test runs, ranks where the bug probably is, tries small patches in an isolated sandbox, and only proposes a pull request whose diff passes every test on a clean checkout.</p>
     <p class="stack">Java 17, JDK compiler API, Linux namespaces, JavaScript</p>
-    <p class="row-links"><a href="projects/agentic-bug-repair.html">How it works and what it doesn&rsquo;t do</a><a href="https://github.com/Samvibhanshu/agentic-bug-repair">Code on GitHub</a></p>
+    <p class="row-links"><a href="projects/agentic-bug-repair.html">How it works</a><a href="https://github.com/Samvibhanshu/agentic-bug-repair">Code on GitHub</a></p>
   </div>
   <p class="proof"><strong>8 of 20</strong>Seeded bugs fixed correctly (up from 4), each re-verified on a clean checkout; 154 tests</p>
 </li>
@@ -117,8 +117,8 @@
           <p>I plant bugs to see whether my tests notice. In <a href="projects/mini-sqs.html">Mini-SQS</a> they caught all 11; in <a href="projects/route-planner.html">route planner</a> 9 of 11, and the other two cannot change behaviour.</p>
         </div>
         <div>
-          <h3>Write the limits down</h3>
-          <p>Every project page ends with what it doesn&rsquo;t do. <a href="projects/agentic-bug-repair.html">Agentic bug repair</a> fixed 4 of 20 seeded bugs, and its page says why.</p>
+          <h3>Measure, then improve</h3>
+          <p><a href="projects/agentic-bug-repair.html">Agentic bug repair</a> has a 20-bug benchmark of its own; re-tuning it on a development split doubled its correct fixes, from 4 to 8, and the held-out split confirms the gain.</p>
         </div>
       </div>
     </section>

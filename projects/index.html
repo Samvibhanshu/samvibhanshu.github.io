@@ -37,7 +37,7 @@
     <div class="page-head">
       <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../index.html">Home</a></li><li aria-current="page">Projects</li></ol></nav>
       <h1>Projects</h1>
-      <p class="lede">Every project links to its code and to a page on how it works. Next to each is what backs it up: the test suite, and a result you can reproduce from the repository. Each page also says what the project does not do.</p>
+      <p class="lede">Every project links to its code and to a page on how it works. Next to each is what backs it up: the test suite, and a result you can reproduce from the repository.</p>
     </div>
     <section class="panel" aria-labelledby="list-h">
       <h2 id="list-h" class="visually-hidden">All projects</h2>
@@ -52,7 +52,7 @@
     <a class="name" href="../projects/order-service.html">Order service</a>
     <p>Place, pay, ship and cancel orders over a JSON HTTP API. It never oversells under concurrency, never charges twice when a payment is retried, only allows legal state changes, and keeps every acknowledged order through a crash with a write-ahead log.</p>
     <p class="stack">Java 17, java.util.concurrent, JDK HTTP server</p>
-    <p class="row-links"><a href="../projects/order-service.html">How it works and what it doesn&rsquo;t do</a><a href="https://github.com/Samvibhanshu/order-service">Code on GitHub</a></p>
+    <p class="row-links"><a href="../projects/order-service.html">How it works</a><a href="https://github.com/Samvibhanshu/order-service">Code on GitHub</a></p>
   </div>
   <p class="proof"><strong>44 tests</strong>Killed with kill -9 mid-traffic, four times: no acknowledged order lost</p>
 </li><li data-cat="java" data-text="order service on aws the order service as a serverless aws service: api gateway, lambda (java) and dynamodb in one sam template. no overselling and no double charge across any number of lambda instances, enforced by dynamodb conditional writes and transactions. aws request signing written from scratch. java 17, aws lambda, api gateway, dynamodb, sam systems (java)">
@@ -60,7 +60,7 @@
     <a class="name" href="../projects/order-service-aws.html">Order service on AWS</a>
     <p>The order service as a serverless AWS service: API Gateway, Lambda (Java) and DynamoDB in one SAM template. No overselling and no double charge across any number of Lambda instances, enforced by DynamoDB conditional writes and transactions. AWS request signing written from scratch.</p>
     <p class="stack">Java 17, AWS Lambda, API Gateway, DynamoDB, SAM</p>
-    <p class="row-links"><a href="../projects/order-service-aws.html">How it works and what it doesn&rsquo;t do</a><a href="https://github.com/Samvibhanshu/order-service-aws">Code on GitHub</a></p>
+    <p class="row-links"><a href="../projects/order-service-aws.html">How it works</a><a href="https://github.com/Samvibhanshu/order-service-aws">Code on GitHub</a></p>
   </div>
   <p class="proof"><strong>18 tests</strong>32 requests race for the last 20 units against DynamoDB's API: exactly 20 succeed</p>
 </li><li data-cat="java" data-text="mini-sqs a message queue with amazon sqs semantics: visibility timeouts, receipt handles, dead-letter queues and redrive, fifo groups with deduplication, long polling. it runs as a library or as a network service that speaks sqs's own protocol, so the official aws sdk can use it. java 17, no dependencies systems (java)">
@@ -68,7 +68,7 @@
     <a class="name" href="../projects/mini-sqs.html">Mini-SQS</a>
     <p>A message queue with Amazon SQS semantics: visibility timeouts, receipt handles, dead-letter queues and redrive, FIFO groups with deduplication, long polling. It runs as a library or as a network service that speaks SQS's own protocol, so the official AWS SDK can use it.</p>
     <p class="stack">Java 17, no dependencies</p>
-    <p class="row-links"><a href="../projects/mini-sqs.html">How it works and what it doesn&rsquo;t do</a><a href="https://github.com/Samvibhanshu/mini-sqs">Code on GitHub</a></p>
+    <p class="row-links"><a href="../projects/mini-sqs.html">How it works</a><a href="https://github.com/Samvibhanshu/mini-sqs">Code on GitHub</a></p>
   </div>
   <p class="proof"><strong>39 tests</strong>The AWS SDK for Python passes 27 checks against it; 600 random sequences lose no message</p>
 </li><li data-cat="java" data-text="agentic bug repair takes a java repository with failing tests and tries to fix it: measures which methods each test runs, ranks where the bug probably is, tries small patches in an isolated sandbox, and only proposes a pull request whose diff passes every test on a clean checkout. java 17, jdk compiler api, linux namespaces, javascript systems (java)">
@@ -76,7 +76,7 @@
     <a class="name" href="../projects/agentic-bug-repair.html">Agentic bug repair</a>
     <p>Takes a Java repository with failing tests and tries to fix it: measures which methods each test runs, ranks where the bug probably is, tries small patches in an isolated sandbox, and only proposes a pull request whose diff passes every test on a clean checkout.</p>
     <p class="stack">Java 17, JDK compiler API, Linux namespaces, JavaScript</p>
-    <p class="row-links"><a href="../projects/agentic-bug-repair.html">How it works and what it doesn&rsquo;t do</a><a href="https://github.com/Samvibhanshu/agentic-bug-repair">Code on GitHub</a></p>
+    <p class="row-links"><a href="../projects/agentic-bug-repair.html">How it works</a><a href="https://github.com/Samvibhanshu/agentic-bug-repair">Code on GitHub</a></p>
   </div>
   <p class="proof"><strong>8 of 20</strong>Seeded bugs fixed correctly (up from 4), each re-verified on a clean checkout; 154 tests</p>
 </li><li data-cat="java" data-text="route planner delivery routing on a city road network: bfs, dijkstra, a* and bidirectional dijkstra, then a van's round through many stops with held-karp (exact) and nearest neighbour plus 2-opt. java 17, no dependencies systems (java)">
@@ -84,7 +84,7 @@
     <a class="name" href="../projects/route-planner.html">Route planner</a>
     <p>Delivery routing on a city road network: BFS, Dijkstra, A* and bidirectional Dijkstra, then a van's round through many stops with Held-Karp (exact) and nearest neighbour plus 2-opt.</p>
     <p class="stack">Java 17, no dependencies</p>
-    <p class="row-links"><a href="../projects/route-planner.html">How it works and what it doesn&rsquo;t do</a><a href="https://github.com/Samvibhanshu/route-planner">Code on GitHub</a></p>
+    <p class="row-links"><a href="../projects/route-planner.html">How it works</a><a href="https://github.com/Samvibhanshu/route-planner">Code on GitHub</a></p>
   </div>
   <p class="proof"><strong>19 tests</strong>Checked against Floyd–Warshall and brute force; A* settles 2.2× fewer nodes than Dijkstra</p>
 </li><li data-cat="python" data-text="opinion lineage measures what people actually think on social media by tracking which posts copy, paraphrase or ai-rewrite which. when a source turns out to be fake, only its descendants are re-weighted, with no model re-runs. python, numpy, scikit-learn, networkx ml and research (python)">
@@ -92,7 +92,7 @@
     <a class="name" href="../projects/opinion-lineage.html">Opinion lineage</a> <span class="tag">patent application</span>
     <p>Measures what people actually think on social media by tracking which posts copy, paraphrase or AI-rewrite which. When a source turns out to be fake, only its descendants are re-weighted, with no model re-runs.</p>
     <p class="stack">Python, NumPy, scikit-learn, networkx</p>
-    <p class="row-links"><a href="../projects/opinion-lineage.html">How it works and what it doesn&rsquo;t do</a><a href="https://github.com/Samvibhanshu/opinion-lineage">Code on GitHub</a></p>
+    <p class="row-links"><a href="../projects/opinion-lineage.html">How it works</a><a href="https://github.com/Samvibhanshu/opinion-lineage">Code on GitHub</a></p>
   </div>
   <p class="proof"><strong>27 tests</strong>With 40% coordinated content, error 0.007 vs 0.038 for a raw count (simulated stream)</p>
 </li><li data-cat="python" data-text="is trust decay prediction predicts which it assets are losing trust from audit events in a temporal knowledge graph, and ranks them for audit with explanations. dashboard and json api. python, flask, networkx, scikit-learn, sqlite, pytest ml and research (python)">
@@ -100,7 +100,7 @@
     <a class="name" href="../projects/trust-decay-prediction.html">IS trust decay prediction</a> <span class="tag">patent application</span>
     <p>Predicts which IT assets are losing trust from audit events in a temporal knowledge graph, and ranks them for audit with explanations. Dashboard and JSON API.</p>
     <p class="stack">Python, Flask, NetworkX, scikit-learn, SQLite, pytest</p>
-    <p class="row-links"><a href="../projects/trust-decay-prediction.html">How it works and what it doesn&rsquo;t do</a><a href="https://github.com/Samvibhanshu/Trust-Decay-Prediction">Code on GitHub</a></p>
+    <p class="row-links"><a href="../projects/trust-decay-prediction.html">How it works</a><a href="https://github.com/Samvibhanshu/Trust-Decay-Prediction">Code on GitHub</a></p>
   </div>
   <p class="proof"><strong>68 tests</strong>Top-10% audit hit rate 47% vs 31% at random (simulated)</p>
 </li><li data-cat="python" data-text="risk-constrained emergency control ventilation control that tries a small reversible test action first and escalates only once it is confirmed safe, with a classifier that screens each candidate before it is tested. python, scikit-learn, javascript ml and research (python)">
@@ -108,7 +108,7 @@
     <a class="name" href="../projects/risk-constrained-control.html">Risk-constrained emergency control</a> <span class="tag">patent application</span>
     <p>Ventilation control that tries a small reversible test action first and escalates only once it is confirmed safe, with a classifier that screens each candidate before it is tested.</p>
     <p class="stack">Python, scikit-learn, JavaScript</p>
-    <p class="row-links"><a href="../projects/risk-constrained-control.html">How it works and what it doesn&rsquo;t do</a><a href="https://github.com/Samvibhanshu/Risk-Constrained-Emergency-Control-System">Code on GitHub</a></p>
+    <p class="row-links"><a href="../projects/risk-constrained-control.html">How it works</a><a href="https://github.com/Samvibhanshu/Risk-Constrained-Emergency-Control-System">Code on GitHub</a></p>
   </div>
   <p class="proof"><strong>0.8% false-safe</strong>92.9% of harmful interventions caught on 5,000 simulated records</p>
 </li><li data-cat="python" data-text="wildfire risk prediction wildfire-risk ensemble on the uci forest fires data, with resource orchestration and a live dashboard. the models are constrained so hotter, drier weather can never lower the predicted risk. python, scikit-learn, flask, sqlite ml and research (python)">
@@ -116,7 +116,7 @@
     <a class="name" href="../projects/wildfire-risk-prediction.html">Wildfire risk prediction</a> <span class="tag">patent application</span>
     <p>Wildfire-risk ensemble on the UCI Forest Fires data, with resource orchestration and a live dashboard. The models are constrained so hotter, drier weather can never lower the predicted risk.</p>
     <p class="stack">Python, scikit-learn, Flask, SQLite</p>
-    <p class="row-links"><a href="../projects/wildfire-risk-prediction.html">How it works and what it doesn&rsquo;t do</a><a href="https://github.com/Samvibhanshu/Autonomous-Wildfire-Prediction-Response-System">Code on GitHub</a></p>
+    <p class="row-links"><a href="../projects/wildfire-risk-prediction.html">How it works</a><a href="https://github.com/Samvibhanshu/Autonomous-Wildfire-Prediction-Response-System">Code on GitHub</a></p>
   </div>
   <p class="proof"><strong>71 tests</strong>Measured accuracy is reported next to the patent's projected figures</p>
 </li><li data-cat="iot" data-text="hybrid real-time fall detection a random forest trained on the sisfall dataset and an edge-ai wearable on an esp32 with an mpu6050 motion sensor that confirms falls and alerts caregivers. python, scikit-learn, c++, esp32, mpu6050, blynk iot iot">
@@ -124,7 +124,7 @@
     <a class="name" href="../projects/hybrid-fall-detection.html">Hybrid real-time fall detection</a>
     <p>A Random Forest trained on the SisFall dataset and an edge-AI wearable on an ESP32 with an MPU6050 motion sensor that confirms falls and alerts caregivers.</p>
     <p class="stack">Python, scikit-learn, C++, ESP32, MPU6050, Blynk IoT</p>
-    <p class="row-links"><a href="../projects/hybrid-fall-detection.html">How it works and what it doesn&rsquo;t do</a><span class="stack">Code not public yet</span></p>
+    <p class="row-links"><a href="../projects/hybrid-fall-detection.html">How it works</a><span class="stack">Code not public yet</span></p>
   </div>
   <p class="proof"><strong>Edge AI</strong>ESP32 + MPU6050 wearable, trained on the SisFall dataset</p>
 </li><li data-cat="web" data-text="notes app create, edit, search, copy and delete notes, saved in the browser. pure redux reducers, and corrupted storage cannot crash it. deployed on vercel. react 19, typescript, redux toolkit, vite, tailwind web">
@@ -132,7 +132,7 @@
     <a class="name" href="../projects/notes-app.html">Notes app</a>
     <p>Create, edit, search, copy and delete notes, saved in the browser. Pure Redux reducers, and corrupted storage cannot crash it. Deployed on Vercel.</p>
     <p class="stack">React 19, TypeScript, Redux Toolkit, Vite, Tailwind</p>
-    <p class="row-links"><a href="../projects/notes-app.html">How it works and what it doesn&rsquo;t do</a><a href="https://github.com/Samvibhanshu/Notes-App">Code on GitHub</a></p>
+    <p class="row-links"><a href="../projects/notes-app.html">How it works</a><a href="https://github.com/Samvibhanshu/Notes-App">Code on GitHub</a></p>
   </div>
   <p class="proof"><strong>13 tests</strong>CI runs lint, tests and build on every push</p>
 </li><li data-cat="web" data-text="found-it campus lost-and-found front end: report found items, browse lost ones, upload photos with drag and drop. team project; i wrote most of the commits. next.js, react, tailwind css web">
@@ -140,7 +140,7 @@
     <a class="name" href="../projects/found-it.html">Found-It</a>
     <p>Campus lost-and-found front end: report found items, browse lost ones, upload photos with drag and drop. Team project; I wrote most of the commits.</p>
     <p class="stack">Next.js, React, Tailwind CSS</p>
-    <p class="row-links"><a href="../projects/found-it.html">How it works and what it doesn&rsquo;t do</a><a href="https://github.com/Samvibhanshu/Found-It">Code on GitHub</a></p>
+    <p class="row-links"><a href="../projects/found-it.html">How it works</a><a href="https://github.com/Samvibhanshu/Found-It">Code on GitHub</a></p>
   </div>
   <p class="proof"><strong>Prototype</strong>Lint and build pass in CI</p>
 </li>

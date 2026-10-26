@@ -55,7 +55,6 @@
 <section class="panel" id="rag" aria-labelledby="rag-h"><h2 id="rag-h">The question-answering layer</h2>
 <p>A text index (TF-IDF, deliberately unaware of lineage) returns the top candidates; the lineage layer keeps <strong>one evidence slot per lineage</strong>, ranks by relevance &times; weight, and abstains below an evidence floor. The generator is extractive, so it cannot hallucinate, and a checker audits every statistic and quote in an answer. A wrapper for a language model rejects answers that cite posts outside the evidence.</p>
 <p>At 40% contamination plain retrieval gives the reader eight posts of which 4% are independent opinions; the lineage-aware answer shows 89% independent posts. Answer error falls from 0.098 (counting all 300 retrieved posts) to 0.061, a clear win over plain retrieval.</p></section>
-<section class="limits" id="limits" aria-labelledby="limits-h"><h2 id="limits-h">What it doesn&rsquo;t do</h2><ul><li><strong>The data is simulated</strong>, not a real dataset: embeddings from a fixed random encoder, a sentiment classifier of about 70% accuracy. Only the relative behaviour is comparable.</li><li><strong>No win over a strong simple baseline.</strong> Text deduplication plus a provenance score is as accurate as the lineage-aware answer (0.0579 against 0.0611 at 40%, p = 0.55). The lineage layer&rsquo;s distinct contributions are explicit amplification accounting, principled propagation of a retraction, and exact, cheap correction.</li><li>The models are tiny stand-ins, so wall-clock gaps would be much larger with real transformers. The count of model runs (0 against 100,000) is the robust claim.</li><li>No real language model was called; the model wrapper is tested with a stub only.</li><li>Lineage construction is exact O(N&sup2;) similarity (about 12 s for 50,000 records); production scale would need an approximate nearest-neighbour index.</li></ul></section>
 <nav class="pager" aria-label="More projects"><a class="prev" href="route-planner.html"><span>Previous project</span><strong>Route planner</strong></a><a class="next" href="trust-decay-prediction.html"><span>Next project</span><strong>IS trust decay prediction</strong></a></nav>
       </article>
       <aside class="glance" aria-label="At a glance">
@@ -66,7 +65,7 @@
         </div>
         <nav class="panel toc" aria-label="On this page">
           <h2>On this page</h2>
-          <ol><li><a href="#problem">The problem</a></li><li><a href="#results">Results</a></li><li><a href="#rag">The question-answering layer</a></li><li><a href="#limits">What it doesn&rsquo;t do</a></li></ol>
+          <ol><li><a href="#problem">The problem</a></li><li><a href="#results">Results</a></li><li><a href="#rag">The question-answering layer</a></li></ol>
         </nav>
       </aside>
     </div>

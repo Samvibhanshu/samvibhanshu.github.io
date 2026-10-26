@@ -51,7 +51,6 @@
 <p>18 tests run against moto, an emulator of the DynamoDB API, so they exercise the real wire protocol, the signing, condition expressions and cancellation reasons. I planted 6 bugs (the stock condition dropped, the price condition dropped, no version check, an expired key still blocking, errors not stored under their key, stock failures read before the version check). <strong>All 6 are caught.</strong></p>
 <p>Two bugs the tests found while I wrote it: a ship-and-cancel race was reported as data corruption because the stock failure was read before the version failure, and an HTML 500 page was parsed as JSON instead of being retried.</p>
 <p>One finding about the emulator itself: moto does not isolate concurrent transactions, so under parallel requests it oversold. Real DynamoDB guarantees serializable transactions, so the tests run moto one request at a time; the clients still race exactly as they would against AWS.</p></section>
-<section class="limits" id="limits" aria-labelledby="limits-h"><h2 id="limits-h">What it doesn&rsquo;t do</h2><ul><li>It is tested against an emulator of DynamoDB&rsquo;s API, not deployed AWS: latency, throughput and cost are not measured. <code>deploy.sh</code> and <code>scripts/smoke.sh</code> deploy it and check it end to end.</li><li>The emulator ignores <code>ClientRequestToken</code>, so idempotent retries of a transaction rest on DynamoDB&rsquo;s documented behaviour rather than on a test.</li><li>The admin token for setting stock is an environment variable; beyond a demo it belongs in Secrets Manager.</li></ul></section>
 <nav class="pager" aria-label="More projects"><a class="prev" href="order-service.html"><span>Previous project</span><strong>Order service</strong></a><a class="next" href="mini-sqs.html"><span>Next project</span><strong>Mini-SQS</strong></a></nav>
       </article>
       <aside class="glance" aria-label="At a glance">
@@ -62,7 +61,7 @@
         </div>
         <nav class="panel toc" aria-label="On this page">
           <h2>On this page</h2>
-          <ol><li><a href="#what">What it is</a></li><li><a href="#guarantees">How DynamoDB enforces each rule</a></li><li><a href="#decisions">Design decisions</a></li><li><a href="#tests">Tests, and what they found</a></li><li><a href="#limits">What it doesn&rsquo;t do</a></li></ol>
+          <ol><li><a href="#what">What it is</a></li><li><a href="#guarantees">How DynamoDB enforces each rule</a></li><li><a href="#decisions">Design decisions</a></li><li><a href="#tests">Tests, and what they found</a></li></ol>
         </nav>
       </aside>
     </div>
